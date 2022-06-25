@@ -117,8 +117,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center_vertical|end"
-                    android:src="@drawable/ic_chicken_recommend_circle"
-                    app:tint="#34c733"
+                    android:src="@drawable/ic_ball_green"
                     android:layout_marginEnd="20dp"/>
 
             </androidx.cardview.widget.CardView>
@@ -152,8 +151,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center_vertical|end"
-                    android:src="@drawable/ic_chicken_recommend_circle"
-                    app:tint="#f8ba05"
+                    android:src="@drawable/ic_ball_yellow"
                     android:layout_marginEnd="20dp"/>
 
             </androidx.cardview.widget.CardView>
@@ -189,8 +187,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center_vertical|end"
-                    android:src="@drawable/ic_chicken_recommend_circle"
-                    app:tint="#f00"
+                    android:src="@drawable/ic_ball_red"
                     android:layout_marginEnd="20dp"/>
 
             </androidx.cardview.widget.CardView>
