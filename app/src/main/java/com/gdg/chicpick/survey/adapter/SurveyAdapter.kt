@@ -51,7 +51,7 @@ class SurveyAdapter(private val onSurveyItemClickListener: OnSurveyItemClickList
             clickedButtonType: MultiSelection.SelectedButtonType
         )
 
-        fun onMustSelectClick()
+        fun onMustSelectClick(item: SurveyItem.MustSelect)
 
         fun onSubmitClick()
     }
@@ -773,10 +773,12 @@ class SurveyAdapter(private val onSurveyItemClickListener: OnSurveyItemClickList
 
     inner class SurveyMustSelectViewHolder(private val viewBinding: SurveyMustSelectBinding) : ViewHolder(viewBinding) {
         override fun bind(item: SurveyItem) {
-            if (item is SurveyItem.MustSelect)
-            viewBinding.textViewQuestion.text = item.question
-            viewBinding.linearLayoutButton.setOnClickListener {
-                onSurveyItemClickListener.onMustSelectClick()
+            if (item is SurveyItem.MustSelect) {
+                viewBinding.textViewQuestion.text = item.question
+                viewBinding.textViewMustSelect.text = SurveyItem.MustSelect.mustSelectItemMap[item.selectedItem]?.first ?: "Q1~Q3??"
+                viewBinding.linearLayoutButton.setOnClickListener {
+                    onSurveyItemClickListener.onMustSelectClick(item)
+                }
             }
         }
     }

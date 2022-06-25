@@ -300,6 +300,21 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
+    fun updateMustSelect(key: Int) {
+        _surveyItems.setValueAfter {
+            val mustSelect = filterIsInstance<SurveyItem.MustSelect>().firstOrNull()
+
+            if (mustSelect == null) {
+                this
+            } else {
+                val index = indexOf(mustSelect)
+                toMutableList().apply {
+                    set(index, mustSelect.copy(selectedItem = key))
+                }
+            }
+        }
+    }
+
     fun updateSlider(
         slider: SurveyItem.MultiSelection.Slider,
         selectedButtonType: SurveyItem.MultiSelection.SelectedButtonType

@@ -14,8 +14,19 @@ sealed class SurveyItem {
 
     data class MustSelect(
         override val id: Int,
-        override val question: String
-    ) : SurveyItem()
+        override val question: String,
+        val selectedItem: Int = -1
+    ) : SurveyItem() {
+        companion object {
+            val mustSelectItemMap = linkedMapOf(
+                0 to ("기본 치킨 vs 양념 치킨" to "q1"),
+                1 to ("뼈 치킨 vs 순살 치킨" to "q2"),
+                2 to ("튀긴 치킨 vs 구운 치킨" to "q3"),
+                3 to ("선호 부위" to "q4"),
+                4 to ("매운 정도" to "q9")
+            )
+        }
+    }
 
     data class Footer(
         override val id: Int,
