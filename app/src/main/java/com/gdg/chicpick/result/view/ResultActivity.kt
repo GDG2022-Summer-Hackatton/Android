@@ -1,5 +1,6 @@
 package com.gdg.chicpick.result.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -9,9 +10,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.gdg.chicpick.databinding.ActivityResultBinding
 import com.gdg.chicpick.login.model.User
+import com.gdg.chicpick.login.view.LoginActivity
 import com.gdg.chicpick.result.ResultInstances
 import com.gdg.chicpick.result.model.SurveyResult
 import com.gdg.chicpick.result.viewmodel.ResultViewModel
+import com.gdg.chicpick.survey.view.SurveyActivity
 
 class ResultActivity : AppCompatActivity() {
 
@@ -23,6 +26,9 @@ class ResultActivity : AppCompatActivity() {
             }
         }
     }
+    private val userId: Int by lazy {
+        intent.getIntExtra("userId", -1)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,9 +36,23 @@ class ResultActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
+        initView()
         initViewModel()
 
-        viewModel.getResult(intent.getIntExtra("userId", -1))
+        viewModel.getResult(userId)
+    }
+
+    private fun initView() = with(binding) {
+        layoutModifyResult.setOnClickListener {
+            startActivity(Intent(this@ResultActivity, SurveyActivity::class.java).apply {
+                putExtra(LoginActivity.EXTRA_ID, userId)
+            })
+            finish()
+        }
+
+        textViewShareResult.setOnClickListener {
+
+        }
     }
 
     private fun initViewModel() = with(viewModel) {
