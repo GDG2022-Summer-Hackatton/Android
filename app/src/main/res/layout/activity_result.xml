@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".result.ResultActivity">
+    tools:context=".result.view.ResultActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 android:id="@+id/text_view_result_key_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="110dp"
+                android:layout_marginTop="70dp"
                 android:gravity="center"
                 android:letterSpacing="0.25"
                 android:lineSpacingExtra="-33sp"
