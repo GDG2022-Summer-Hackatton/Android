@@ -14,8 +14,9 @@
         android:theme="@style/Theme.ChicPick"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".landing.LandingActivity"
+            android:exported="true" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,6 +29,16 @@
 
         <activity android:name=".survey.view.SurveyActivity"
             android:exported="true" />
+
+        <activity
+            android:name=".result.ResultActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
+
     </application>
 
 </manifest>
