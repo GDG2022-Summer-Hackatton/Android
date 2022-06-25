@@ -14,7 +14,7 @@
         android:theme="@style/Theme.ChicPick"
         tools:targetApi="31">
         <activity
-            android:name=".LandingActivity"
+            android:name=".landing.LandingActivity"
             android:exported="true" >
 
             <intent-filter>
@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ResultActivity"
+            android:name=".result.ResultActivity"
             android:exported="true">
         </activity>
         <activity

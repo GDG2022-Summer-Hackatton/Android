@@ -1,7 +1,8 @@
-package com.gdg.chicpick
+package com.gdg.chicpick.result
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.gdg.chicpick.R
 
 class ResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

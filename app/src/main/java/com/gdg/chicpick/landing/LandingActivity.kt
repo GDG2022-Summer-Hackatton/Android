@@ -1,4 +1,4 @@
-package com.gdg.chicpick
+package com.gdg.chicpick.landing
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
