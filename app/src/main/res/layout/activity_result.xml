@@ -17,11 +17,11 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="76dp"
             android:layout_marginEnd="24dp"
-            android:scaleType="centerCrop"
+            android:scaleType="centerInside"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/bbt" />
+            tools:src="@drawable/chicken_f" />
 
         <TextView
             android:id="@+id/text_view_result_key_type"
@@ -37,7 +37,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/image_view_result_type"
-            android:text="본뼈튀-단2" />
+            tools:text="본뼈튀-단2" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view_result_comment_box"
@@ -69,7 +69,7 @@
                     android:textColor="?attr/colorOnSecondary"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:text="당신은 근본 그 차제입니다." />
+                    tools:text="당신은 근본 그 차제입니다." />
 
                 <TextView
                     android:textAppearance="@style/ChicPickText.CardView"
@@ -79,7 +79,7 @@
                     android:lineSpacingExtra="5sp"
                     android:paddingTop="40dp"
                     android:textSize="16sp"
-                    android:text="치킨 자체의 식감과 미묘한 맛을 즐깁니다.\n부위별로 보다 다채로운 식감을 즐기고 튀긴 치킨 특유의 바삭함을 선호합니다." />
+                    tools:text="치킨 자체의 식감과 미묘한 맛을 즐깁니다.\n부위별로 보다 다채로운 식감을 즐기고 튀긴 치킨 특유의 바삭함을 선호합니다." />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -104,7 +104,7 @@
                 android:textAppearance="@style/ChicPickText.CardView"
                 android:gravity="center"
                 android:lineSpacingExtra="5sp"
-                android:text="BBQ 황금 올리브"
+                tools:text="BBQ 황금 올리브"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
 
@@ -130,7 +130,7 @@
                 android:textAppearance="@style/ChicPickText.CardView"
                 android:gravity="center"
                 android:lineSpacingExtra="5sp"
-                android:text="98%"
+                tools:text="98%"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
 
@@ -156,7 +156,7 @@
                 android:textAppearance="@style/ChicPickText.CardView"
                 android:gravity="center"
                 android:lineSpacingExtra="5sp"
-                android:text="BHC 핫 후라이드"
+                tools:text="BHC 핫 후라이드"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
 
@@ -182,7 +182,7 @@
                 android:textAppearance="@style/ChicPickText.CardView"
                 android:gravity="center"
                 android:lineSpacingExtra="5sp"
-                android:text="92%"
+                tools:text="92%"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
 
@@ -208,7 +208,7 @@
                 android:textAppearance="@style/ChicPickText.CardView"
                 android:gravity="center"
                 android:lineSpacingExtra="5sp"
-                android:text="교촌치킨 레드 콤보"
+                tools:text="교촌치킨 레드 콤보"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
 
@@ -236,7 +236,7 @@
                 android:textAppearance="@style/ChicPickText.CardView"
                 android:gravity="center"
                 android:lineSpacingExtra="5sp"
-                android:text="86%"
+                tools:text="86%"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
 
