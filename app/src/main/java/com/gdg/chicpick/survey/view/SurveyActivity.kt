@@ -1,6 +1,5 @@
 package com.gdg.chicpick.survey.view
 
-import android.content.DialogInterface
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +15,6 @@ import com.gdg.chicpick.survey.adapter.SurveyItemDecorator
 import com.gdg.chicpick.survey.model.SurveyItem
 import com.gdg.chicpick.survey.viewmodel.SurveyViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.dialog.MaterialDialogs
 
 class SurveyActivity : AppCompatActivity(), SurveyAdapter.OnSurveyItemClickListener {
     private val viewBinding by lazy {
@@ -45,7 +43,7 @@ class SurveyActivity : AppCompatActivity(), SurveyAdapter.OnSurveyItemClickListe
             surveyAdapter.submitList(it)
         }
 
-        viewModel.respSuccess.observe(this) {
+        viewModel.addRespSuccess.observe(this) {
             if (it == true) {
                 resultActivityContract.launch(User(userId, "", false)) // 내부적으로 userId만 쓰므로. 이렇게 씁시다.
                 finish()

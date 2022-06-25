@@ -1,20 +1,17 @@
 package com.gdg.chicpick.survey.viewmodel
 
 import android.app.Application
-import android.content.Intent
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.gdg.chicpick.R
 import com.gdg.chicpick.contant.BASE_URL
-import com.gdg.chicpick.login.LoginInstances
 import com.gdg.chicpick.survey.model.ButtonText
 import com.gdg.chicpick.survey.model.SliderContent
 import com.gdg.chicpick.survey.model.SurveyItem
 import com.gdg.chicpick.survey.network.SurveyService
 import com.gdg.chicpick.survey.network.model.RequestSubmitSurvey
-import com.gdg.chicpick.survey.network.model.ResponseSubmitSurvey
 import com.gdg.chicpick.survey.setValueAfter
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
@@ -37,8 +34,8 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
 
     private val surveyApi = retrofit.create(SurveyService::class.java)
 
-    private val _respSuccess = MutableLiveData<Boolean>()
-    val respSuccess : LiveData<Boolean> get() = _respSuccess
+    private val _addRespSuccess = MutableLiveData<Boolean>()
+    val addRespSuccess : LiveData<Boolean> get() = _addRespSuccess
 
     fun submitSurvey(userId: Int) {
         val codes = mutableListOf<String>()
@@ -70,9 +67,9 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
         viewModelScope.launch {
             try {
                 surveyApi.submitSurvey(request)
-                _respSuccess.value = true
+                _addRespSuccess.value = true
             } catch (e: java.io.EOFException) {
-                _respSuccess.value = true
+                _addRespSuccess.value = true
             } catch (e: Exception) {
                 println("SurveyViewModel exception :$e")
             }
