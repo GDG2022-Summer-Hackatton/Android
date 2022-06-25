@@ -12,6 +12,7 @@ import com.gdg.chicpick.survey.model.SliderContent
 import com.gdg.chicpick.survey.model.SurveyItem
 import com.gdg.chicpick.survey.network.SurveyService
 import com.gdg.chicpick.survey.network.model.RequestSubmitSurvey
+import com.gdg.chicpick.survey.network.model.ResponseGetSurvey
 import com.gdg.chicpick.survey.setValueAfter
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
@@ -36,6 +37,18 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
 
     private val _addRespSuccess = MutableLiveData<Boolean>()
     val addRespSuccess : LiveData<Boolean> get() = _addRespSuccess
+
+    fun getSurvey(userId: Int) {
+        viewModelScope.launch {
+            try {
+                val resp = surveyApi.getSurvey(userId)
+                _surveyItems.value = createSurvey(resp)
+            } catch (e: Exception) {
+                println("SurveyViewModel getSurvey exception :$e")
+                _surveyItems.value = createSurvey(null)
+            }
+        }
+    }
 
     fun submitSurvey(userId: Int) {
         val codes = mutableListOf<String>()
@@ -63,7 +76,7 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
             q11 = codes[10],
             q12 = codes[11],
         )
-        println("SurveyViewModel req :$request")
+        println("SurveyViewModel submitSurvey req :$request")
         viewModelScope.launch {
             try {
                 surveyApi.submitSurvey(request)
@@ -71,13 +84,17 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
             } catch (e: java.io.EOFException) {
                 _addRespSuccess.value = true
             } catch (e: Exception) {
-                println("SurveyViewModel exception :$e")
+                println("SurveyViewModel submitSurvey exception :$e")
             }
         }
     }
 
-    private val _surveyItems = MutableLiveData(
-        listOf(
+    private val _surveyItems = MutableLiveData<List<SurveyItem>>()
+
+    val surveyItems: LiveData<List<SurveyItem>> get() = _surveyItems
+
+    private fun createSurvey(resp: ResponseGetSurvey?): List<SurveyItem> {
+        return listOf(
             SurveyItem.Header(id = 0),
             SurveyItem.SingleSelection.TwoButton(
                 id = 1,
@@ -87,8 +104,10 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
                 ),
                 secondButtonText = ButtonText(
                     title = "양념 치킨"
-                )
-            ),
+                ),
+            ).apply {
+                    setSelectedButtonType(resp?.q1)
+            },
             SurveyItem.SingleSelection.TwoButton(
                 id = 2,
                 question = "Q2 / 12 - 근본 vs 편리",
@@ -98,7 +117,9 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
                 secondButtonText = ButtonText(
                     title = "순살 치킨"
                 )
-            ),
+            ).apply {
+                setSelectedButtonType(resp?.q2)
+            },
             SurveyItem.SingleSelection.TwoButton(
                 id = 3,
                 question = "Q3 / 12 - 조리 방식",
@@ -108,7 +129,9 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
                 secondButtonText = ButtonText(
                     title = "구운 치킨"
                 )
-            ),
+            ).apply {
+                setSelectedButtonType(resp?.q3)
+            },
             SurveyItem.MultiSelection.MultiButtons(
                 id = 4,
                 question = "Q4 / 12 - 선호 부위 (중복 가능)",
@@ -123,7 +146,9 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
                     ButtonText("닭 엉치", "쫄깃함+부드러움+퍽퍽함"),
                     ButtonText("통닭", "모든 부위를 한 번에"),
                 )
-            ),
+            ).apply {
+                setSelectedButtonType(resp?.q4)
+            },
             SurveyItem.MultiSelection.Slider(
                 id = 5,
                 question = "Q5 / 12 - 튀김 방식",
@@ -150,7 +175,9 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
                         description = "튀김 방식, 아무래도 상관 없어요!"
                     )
                 )
-            ),
+            ).apply {
+                setSelectedButtonType(resp?.q5)
+            },
             SurveyItem.MultiSelection.Slider(
                 id = 6,
                 question = "Q6 / 12 - 구이 방식",
@@ -177,7 +204,9 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
                         description = "구이 방식, 아무래도 상관 없어요!"
                     )
                 )
-            ),
+            ).apply {
+                setSelectedButtonType(resp?.q6)
+            },
             SurveyItem.SingleSelection.TwoButton(
                 id = 7,
                 question = "Q7 / 12 - 양념 방식",
@@ -191,7 +220,9 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
                     description = "바삭한 식감\n" +
                             "조절 가능한 양념 선호"
                 )
-            ),
+            ).apply {
+                setSelectedButtonType(resp?.q7)
+            },
             SurveyItem.SingleSelection.FourButton(
                 id = 8,
                 question = "Q8 / 12 - 핵심 맛",
@@ -207,7 +238,9 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
                 fourthButtonText = ButtonText(
                     title = "신"
                 ),
-            ),
+            ).apply {
+                setSelectedButtonType(resp?.q8)
+            },
             SurveyItem.SingleSelection.SixButton(
                 id = 9,
                 question = "Q9 / 12 - 매운맛 0~6단계",
@@ -235,7 +268,9 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
                     title = "Lv.6",
                     description = "맛 > 양(조화)"
                 )
-            ),
+            ).apply {
+                setSelectedButtonType(resp?.q9)
+            },
             SurveyItem.SingleSelection.ThreeButton(
                 id = 10,
                 question = "Q10 / 12 - 비용 vs 맛",
@@ -251,7 +286,9 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
                     title = "미식",
                     description = "오로지 맛.",
                 )
-            ),
+            ).apply {
+                setSelectedButtonType(resp?.q10)
+            },
             SurveyItem.SingleSelection.TwoButton(
                 id = 11,
                 question = "Q11 / 12 - 냉동 여부",
@@ -263,18 +300,20 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
                     title = "냉동",
                     description = "값 육즙 육질",
                 )
-            ),
+            ).apply {
+                setSelectedButtonType(resp?.q11)
+            },
             SurveyItem.MustSelect(
                 id = 12,
                 question = "Q12 / 12 - 치킨을 선택할 때 이것만은 꼭!"
-            ),
+            ).apply {
+                setSelectedButtonType(resp?.q12)
+            },
             SurveyItem.Footer(
                 id = 13
             )
         )
-    )
-
-    val surveyItems: LiveData<List<SurveyItem>> get() = _surveyItems
+    }
 
     fun updateTwoButton(
         twoButton: SurveyItem.SingleSelection.TwoButton,

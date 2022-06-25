@@ -39,6 +39,8 @@ class SurveyActivity : AppCompatActivity(), SurveyAdapter.OnSurveyItemClickListe
     }
 
     private fun initData() {
+        viewModel.getSurvey(userId)
+
         viewModel.surveyItems.observe(this) {
             surveyAdapter.submitList(it)
         }

@@ -8,12 +8,16 @@ sealed class SurveyItem {
     abstract val question: String
 
     abstract fun getCode(): String
+    abstract fun setSelectedButtonType(a: String?)
 
     data class Header(
         override val id: Int,
         override val question: String = EMPTY
     ) : SurveyItem() {
         override fun getCode(): String = "" // header는 코드 불필요.
+        override fun setSelectedButtonType(a: String?) {
+
+        }
     }
 
     data class MustSelect(
@@ -23,6 +27,10 @@ sealed class SurveyItem {
     ) : SurveyItem() {
         override fun getCode(): String {
             return mustSelectItemMap[selectedItem]?.second ?: "q1"
+        }
+
+        override fun setSelectedButtonType(a: String?) {
+
         }
 
         companion object {
@@ -40,6 +48,10 @@ sealed class SurveyItem {
         override val id: Int,
         override val question: String = EMPTY
     ) : SurveyItem() {
+        override fun setSelectedButtonType(a: String?) {
+
+        }
+
         override fun getCode(): String {
             return ""
         }
@@ -55,10 +67,20 @@ sealed class SurveyItem {
         data class TwoButton(
             override val id: Int,
             override val question: String,
-            override val selectedButtonType: SelectedButtonType = SelectedButtonType.Unknown,
+            override var selectedButtonType: SelectedButtonType = SelectedButtonType.Unknown,
             val firstButtonText: ButtonText,
             val secondButtonText: ButtonText,
         ) : SingleSelection() {
+            override fun setSelectedButtonType(a: String?) {
+                a ?: return
+
+                selectedButtonType = when(a) {
+                    "A1" -> SelectedButtonType.First
+                    "A2" -> SelectedButtonType.Second
+                    else -> SelectedButtonType.DonTCare
+                }
+            }
+
             override fun getCode(): String {
                 return when(selectedButtonType) {
                     SelectedButtonType.First -> "A1"
@@ -71,11 +93,22 @@ sealed class SurveyItem {
         data class ThreeButton(
             override val id: Int,
             override val question: String,
-            override val selectedButtonType: SelectedButtonType = SelectedButtonType.Unknown,
+            override var selectedButtonType: SelectedButtonType = SelectedButtonType.Unknown,
             val firstButtonText: ButtonText,
             val secondButtonText: ButtonText,
             val thirdButtonText: ButtonText,
         ) : SingleSelection() {
+            override fun setSelectedButtonType(a: String?) {
+                a ?: return
+
+                selectedButtonType = when(a) {
+                    "A1" -> SelectedButtonType.First
+                    "A2" -> SelectedButtonType.Second
+                    "A3" -> SelectedButtonType.Third
+                    else -> SelectedButtonType.DonTCare
+                }
+            }
+
             override fun getCode(): String {
                 return when(selectedButtonType) {
                     SelectedButtonType.First -> "A1"
@@ -89,12 +122,24 @@ sealed class SurveyItem {
         data class FourButton(
             override val id: Int,
             override val question: String,
-            override val selectedButtonType: SelectedButtonType = SelectedButtonType.Unknown,
+            override var selectedButtonType: SelectedButtonType = SelectedButtonType.Unknown,
             val firstButtonText: ButtonText,
             val secondButtonText: ButtonText,
             val thirdButtonText: ButtonText,
             val fourthButtonText: ButtonText,
         ) : SingleSelection() {
+            override fun setSelectedButtonType(a: String?) {
+                a ?: return
+
+                selectedButtonType = when(a) {
+                    "A1" -> SelectedButtonType.First
+                    "A2" -> SelectedButtonType.Second
+                    "A3" -> SelectedButtonType.Third
+                    "A4" -> SelectedButtonType.Fourth
+                    else -> SelectedButtonType.DonTCare
+                }
+            }
+
             override fun getCode(): String {
                 return when(selectedButtonType) {
                     SelectedButtonType.First -> "A1"
@@ -109,7 +154,7 @@ sealed class SurveyItem {
         data class SixButton(
             override val id: Int,
             override val question: String,
-            override val selectedButtonType: SelectedButtonType = SelectedButtonType.Unknown,
+            override var selectedButtonType: SelectedButtonType = SelectedButtonType.Unknown,
             val firstButtonText: ButtonText,
             val secondButtonText: ButtonText,
             val thirdButtonText: ButtonText,
@@ -117,6 +162,19 @@ sealed class SurveyItem {
             val fifthButtonText: ButtonText,
             val sixButtonText: ButtonText,
         ) : SingleSelection() {
+            override fun setSelectedButtonType(a: String?) {
+                a ?: return
+
+                selectedButtonType = when(a) {
+                    "A1" -> SelectedButtonType.First
+                    "A2" -> SelectedButtonType.Second
+                    "A3" -> SelectedButtonType.Third
+                    "A4" -> SelectedButtonType.Fourth
+                    "A5" -> SelectedButtonType.Fifth
+                    else -> SelectedButtonType.DonTCare
+                }
+            }
+
             override fun getCode(): String {
                 return when(selectedButtonType) {
                     SelectedButtonType.First -> "A1"
@@ -141,7 +199,7 @@ sealed class SurveyItem {
             @DrawableRes
             val resId: Int,
             val buttonTexts: List<ButtonText>,
-            val selectedButtonTypes: List<SelectedButtonType> = emptyList()
+            var selectedButtonTypes: List<SelectedButtonType> = emptyList()
         ) : MultiSelection() {
             companion object {
                 const val BUTTON_COUNT = 8
@@ -160,12 +218,29 @@ sealed class SurveyItem {
                     else -> "A9"
                 }
             }
+
+            override fun setSelectedButtonType(a: String?) {
+                a ?: return
+
+                val type = when(a) {
+                    "A1" -> SelectedButtonType.First
+                    "A2" -> SelectedButtonType.Second
+                    "A3" -> SelectedButtonType.Third
+                    "A4" -> SelectedButtonType.Fourth
+                    "A5" -> SelectedButtonType.Fifth
+                    "A6" -> SelectedButtonType.Sixth
+                    "A7" -> SelectedButtonType.Seventh
+                    "A8" -> SelectedButtonType.Eighth
+                    else -> SelectedButtonType.DonTCare
+                }
+                selectedButtonTypes = listOf(type)
+            }
         }
 
         data class Slider(
             override val id: Int,
             override val question: String,
-            val selectedButtonTypes: List<SelectedButtonType> = emptyList(),
+            var selectedButtonTypes: List<SelectedButtonType> = emptyList(),
             val sliderContents: List<SliderContent>,
         ) : MultiSelection() {
             companion object {
@@ -179,6 +254,19 @@ sealed class SurveyItem {
                     SelectedButtonType.Third in selectedButtonTypes -> "A3"
                     else -> "A4"
                 }
+            }
+
+            override fun setSelectedButtonType(a: String?) {
+                a ?: return
+
+                val type = when(a) {
+                    "A1" -> SelectedButtonType.First
+                    "A2" -> SelectedButtonType.Second
+                    "A3" -> SelectedButtonType.Third
+                    else -> SelectedButtonType.DonTCare
+                }
+
+                selectedButtonTypes = listOf(type)
             }
         }
     }
