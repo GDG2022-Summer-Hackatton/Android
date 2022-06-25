@@ -3,7 +3,8 @@
     <color name="primary">#667080</color>
     <color name="secondary">#FFFFFF</color>
     <color name="selected">@color/primary</color>
-    <color name="unselected">#C1C1C1</color>
+    <color name="unselected">#FFFFFF</color>
+    <color name="don_t_care_unselected">#C1C1C1</color>
     <color name="accent">#FFA24D</color>
     <color name="text">#262525</color>
     <color name="text_floating">#000000</color>
