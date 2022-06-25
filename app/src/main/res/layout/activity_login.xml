@@ -1,82 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipChildren="false"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:clipToPadding="false">
 
     <LinearLayout
-        android:clipToPadding="false"
+        android:id="@+id/layout_login_form"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.7"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:orientation="vertical"
-        android:paddingTop="40dp"
-        android:paddingBottom="40dp">
+        android:paddingStart="39dp"
+        android:paddingEnd="39dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/edit_text_email"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:hint="E-mail"
+            android:inputType="textEmailAddress"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:textColor="?attr/colorPrimary"
+            android:textColorHint="?attr/colorPrimary"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/unselected" />
+
+        <EditText
+            android:id="@+id/edit_text_password"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="60dp"
+            android:background="@null"
+            android:hint="PW"
+            android:inputType="textPassword"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:textColor="?attr/colorPrimary"
+            android:textColorHint="?attr/colorPrimary"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/unselected" />
 
         <TextView
+            android:id="@+id/text_view_login"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:text="Naver Log-in"
-            android:gravity="center"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:layout_height="60dp"
+            android:layout_marginTop="60dp"
             android:background="@drawable/shape_floating_button"
-            android:textColor="?attr/colorOnSecondary"
+            android:backgroundTint="?attr/colorPrimary"
             android:elevation="40dp"
-            android:backgroundTint="#66D290"/>
+            android:gravity="center"
+            android:text="로그인"
+            android:textAppearance="@style/Theme.ChicPick.CardView"
+            android:textColor="@color/secondary"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_login_form">
 
         <TextView
+            android:id="@+id/text_view_sns"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginTop="30dp"
-            android:text="Kakao Log-in"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
             android:gravity="center"
-            android:textSize="20sp"
+            android:text="SNS"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="15sp"
             android:textStyle="bold"
-            android:background="@drawable/shape_floating_button"
-            android:textColor="?attr/colorOnSecondary"
-            android:elevation="40dp"
-            android:backgroundTint="#F8E961"/>
+            app:layout_constraintBottom_toTopOf="@id/sns_divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_login_form"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-        <TextView
+        <View
+            android:id="@+id/sns_divider"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginTop="30dp"
-            android:text="Google Log-in"
-            android:gravity="center"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:background="@drawable/shape_floating_button"
-            android:textColor="?attr/colorOnSecondary"
-            android:elevation="40dp"
-            android:backgroundTint="#FFB8B4"/>
+            android:layout_height="1dp"
+            android:layout_marginStart="39dp"
+            android:layout_marginEnd="39dp"
+            android:background="@color/unselected"
+            app:layout_constraintBottom_toTopOf="@id/image_view_sns_login_google"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view_sns" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginTop="30dp"
-            android:text="Facebook Log-in"
-            android:gravity="center"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:background="@drawable/shape_floating_button"
-            android:textColor="?attr/colorOnSecondary"
-            android:elevation="40dp"
-            android:backgroundTint="#70A5EA"/>
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/image_view_sns_login_apple"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="39dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_sns_login_button"
+                android:backgroundTint="#ffffff"
+                android:elevation="40dp"
+                android:src="@drawable/ic_sns_login_apple" />
+
+            <ImageView
+                android:id="@+id/image_view_sns_login_google"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_sns_login_button"
+                android:backgroundTint="#ffffff"
+                android:elevation="40dp"
+                android:src="@drawable/ic_sns_login_google" />
+
+            <ImageView
+                android:id="@+id/image_view_sns_login_facebook"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_sns_login_button"
+                android:backgroundTint="#4D74FF"
+                android:elevation="40dp"
+                android:src="@drawable/ic_sns_login_facebook" />
+
+            <ImageView
+                android:id="@+id/image_view_sns_login_naver"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="39dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_sns_login_button"
+                android:backgroundTint="#04B100"
+                android:elevation="40dp"
+                android:src="@drawable/ic_sns_login_naver" />
+        </LinearLayout>
 
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
