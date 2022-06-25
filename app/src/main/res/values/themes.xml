@@ -35,6 +35,7 @@
         <item name="android:insetTop">0dp</item>
         <item name="android:minHeight">0dp</item>
         <item name="android:minWidth">0dp</item>
+        <item name="android:textColor">@color/text_floating</item>
         <item name="android:textSize">16sp</item>
     </style>
 </resources>

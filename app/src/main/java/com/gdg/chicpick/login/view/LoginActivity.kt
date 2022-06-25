@@ -1,5 +1,6 @@
 package com.gdg.chicpick.login.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -9,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.gdg.chicpick.databinding.ActivityLoginBinding
 import com.gdg.chicpick.login.LoginInstances
 import com.gdg.chicpick.login.viewmodel.LoginViewModel
+import com.gdg.chicpick.survey.view.SurveyActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -51,7 +53,11 @@ class LoginActivity : AppCompatActivity() {
         }
 
         loginUser.observe(this@LoginActivity) { loginUser ->
-            Toast.makeText(this@LoginActivity, loginUser.id.toString(), Toast.LENGTH_SHORT).show()
+            if (loginUser.hasSurvey) {
+
+            } else {
+                startActivity(Intent(this@LoginActivity, SurveyActivity::class.java))
+            }
         }
     }
 }
