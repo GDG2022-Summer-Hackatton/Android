@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LandingActivity">
+
+    <TextView
+        android:id="@+id/text_view_already_have_mbti"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginEnd="39dp"
+        android:layout_marginBottom="73dp"
+        android:background="@drawable/shape_floating_button"
+        android:backgroundTint="?attr/colorSecondary"
+        android:elevation="40dp"
+        android:gravity="center"
+        android:text="이미 텅-BTI가 있어요 :)"
+        android:textAppearance="@style/Theme.ChicPick.CardView"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_not_have_mbti"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginEnd="39dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/shape_floating_button"
+        android:backgroundTint="?attr/colorSecondary"
+        android:elevation="40dp"
+        android:gravity="center"
+        android:text="텅-BTI 테스트 하기"
+        android:textAppearance="@style/Theme.ChicPick.CardView"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/text_view_already_have_mbti"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_landing_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:text="나만의 치킨 찾기"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@id/text_view_not_have_mbti"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_landing_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:text="이제 더 이상 뭘 먹을지 고민하지 마세요!"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toTopOf="@id/text_view_landing_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/text_view_landing_description"
+        android:src="@drawable/glass_chicken"
+        android:scaleType="centerCrop"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
