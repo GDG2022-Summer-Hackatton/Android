@@ -47,7 +47,6 @@ class ResultActivity : AppCompatActivity() {
             startActivity(Intent(this@ResultActivity, SurveyActivity::class.java).apply {
                 putExtra(LoginActivity.EXTRA_ID, userId)
             })
-            finish()
         }
 
         textViewShareResult.setOnClickListener {
@@ -64,6 +63,9 @@ class ResultActivity : AppCompatActivity() {
             binding.imageViewResultType.setImageDrawable(
                 ContextCompat.getDrawable(this@ResultActivity, surveyResult.chickenType.getImageResource())
             )
+            binding.textViewShareResult.setOnClickListener {
+                shareText(generateKeyword(surveyResult))
+            }
 
             // 추천 치킨 표시
             surveyResult.recommendedChickens.let {
@@ -97,5 +99,16 @@ class ResultActivity : AppCompatActivity() {
         stringBuilder.append(surveyResult.spicy)
 
         return stringBuilder.toString()
+    }
+
+    private fun shareText(text: String) {
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, text)
+            type = "text/plain"
+        }
+
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        startActivity(shareIntent)
     }
 }
