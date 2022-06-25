@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/ic_chicken_part_380.xml" value="0.184" />
         <entry key="app/src/main/res/drawable/shape_floating_button.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/activity_survey.xml" value="0.2390625" />
         <entry key="app/src/main/res/layout/slider.xml" value="0.18125" />
         <entry key="app/src/main/res/layout/survey_button_pair.xml" value="0.17447916666666666" />
