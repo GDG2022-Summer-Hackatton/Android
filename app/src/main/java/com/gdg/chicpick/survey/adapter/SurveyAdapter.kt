@@ -2,6 +2,7 @@ package com.gdg.chicpick.survey.adapter
 
 import android.content.Context
 import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
@@ -65,10 +66,16 @@ class SurveyAdapter(private val onSurveyItemClickListener: OnSurveyItemClickList
         protected val selectedButtonColor: Int get() = context.getColor(R.color.selected)
 
         @get:ColorInt
+        protected val textColor: Int get() = context.getColor(R.color.text)
+
+        @get:ColorInt
         protected val unselectedButtonColor: Int get() = context.getColor(R.color.unselected)
 
         @get:ColorInt
         protected val donTCareUnselectedButtonColor: Int get() = context.getColor(R.color.don_t_care_unselected)
+
+        @ColorInt
+        protected val sliderDescriptionTextColor = Color.parseColor("#667080")
     }
 
     inner class SurveyHeaderViewHolder(viewBinding: SurveyHeaderBinding) : ViewHolder(viewBinding) {
@@ -658,12 +665,21 @@ class SurveyAdapter(private val onSurveyItemClickListener: OnSurveyItemClickList
         private fun updateUiByType(types: List<MultiSelection.SelectedButtonType>) {
             repeat(MultiSelection.Slider.BUTTON_COUNT) { index ->
                 getSliderItemBindingByIndex(index)?.let { binding ->
+                    binding.textViewTitle.setBackgroundColor(unselectedButtonColor)
+                    binding.textViewTitle.setTextColor(textColor)
+                    binding.textViewDescription.setBackgroundColor(unselectedButtonColor)
+                    binding.textViewDescription.setTextColor(sliderDescriptionTextColor)
                     binding.root.backgroundTintList = ColorStateList.valueOf(unselectedButtonColor)
                 }
             }
 
             types.forEach { type ->
-                getSliderItemBindingByType(type).root.backgroundTintList = ColorStateList.valueOf(selectedButtonColor)
+                val binding = getSliderItemBindingByType(type)
+                binding.textViewTitle.setBackgroundColor(selectedButtonColor)
+                binding.textViewTitle.setTextColor(Color.WHITE)
+                binding.textViewDescription.setBackgroundColor(selectedButtonColor)
+                binding.textViewDescription.setTextColor(Color.WHITE)
+                binding.root.backgroundTintList = ColorStateList.valueOf(selectedButtonColor)
             }
         }
     }

@@ -170,7 +170,7 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
                         description = "건식과 습식 파우더를 혼용하여 바삭한 식감을 극대화한 현재 가장 많이 보이는 방식"
                     ),
                     SliderContent(
-                        resId = null,
+                        resId = R.drawable.grey_background,
                         title = "상관없음.",
                         description = "튀김 방식, 아무래도 상관 없어요!"
                     )
@@ -199,7 +199,7 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
                         description = "소금에 절인 수조육류를 훈연을 하여 건조시키는 가공 방식"
                     ),
                     SliderContent(
-                        resId = null,
+                        resId = R.drawable.grey_background,
                         title = "상관없음.",
                         description = "구이 방식, 아무래도 상관 없어요!"
                     )

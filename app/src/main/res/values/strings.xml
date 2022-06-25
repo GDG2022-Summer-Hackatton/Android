@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Chic-Pick</string>
 
-    <string name="survey_title">아래의 테스트는 이후 가중치를 적용하여 더욱 정확한 추천을 받을 수 있습니다.</string>
+    <string name="survey_title">간단한 테스트로 나만의 추천을 받아보세요!</string>
     <string name="survey_description1">*개인적으로 제일 중요한 기준의 경우 주황색 체크박스 선택</string>
     <string name="survey_description2">*맛에 확신이 있는 경우 회색 체크박스 선택</string>
 
