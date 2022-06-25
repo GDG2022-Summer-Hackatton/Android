@@ -23,14 +23,21 @@ sealed class SurveyItem {
     data class MustSelect(
         override val id: Int,
         override val question: String,
-        val selectedItem: Int = -1
+        var selectedItem: Int = -1
     ) : SurveyItem() {
         override fun getCode(): String {
             return mustSelectItemMap[selectedItem]?.second ?: "q1"
         }
 
         override fun setSelectedButtonType(a: String?) {
-
+            selectedItem = when(a) {
+                "q1" -> 0
+                "q2" -> 1
+                "q3" -> 2
+                "q4" -> 3
+                "q9" -> 4
+                else -> -1
+            }
         }
 
         companion object {
