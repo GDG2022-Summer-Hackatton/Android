@@ -1,7 +1,7 @@
 package com.gdg.chicpick.login
 
 import com.gdg.chicpick.contant.BASE_URL
-import com.gdg.chicpick.login.data.LoginApi
+import com.gdg.chicpick.login.data.api.LoginApi
 import com.gdg.chicpick.login.data.repository.LoginRepositoryImpl
 import com.gdg.chicpick.login.model.repository.LoginRepository
 import okhttp3.OkHttpClient

@@ -32,14 +32,7 @@ class ResultActivity : AppCompatActivity() {
 
         initViewModel()
 
-        viewModel.getResult(
-            User(
-                id = 4,
-                email = "asdf@asdf.asdf",
-                password = "asdf",
-                hasSurvey = true
-            )
-        )
+        viewModel.getResult(intent.getIntExtra("userId", -1))
     }
 
     private fun initViewModel() = with(viewModel) {

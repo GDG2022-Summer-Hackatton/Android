@@ -5,6 +5,6 @@ import com.gdg.chicpick.result.model.SurveyResult
 
 interface SurveyResultRepository {
     suspend fun getSurveyResult(
-        user: User
+        userId: Int
     ) : SurveyResult
 }

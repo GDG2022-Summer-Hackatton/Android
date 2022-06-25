@@ -9,7 +9,7 @@ import com.gdg.chicpick.result.view.ResultActivity
 class ResultActivityContract : ActivityResultContract<User, Unit>() {
     override fun createIntent(context: Context, input: User): Intent {
         return Intent(context, ResultActivity::class.java).apply {
-            putExtra("userID", input.id)
+            putExtra("userId", input.id)
         }
     }
 

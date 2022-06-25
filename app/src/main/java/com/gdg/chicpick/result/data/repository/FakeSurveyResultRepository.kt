@@ -7,7 +7,7 @@ import com.gdg.chicpick.result.model.SurveyResult
 import com.gdg.chicpick.result.model.repository.SurveyResultRepository
 
 class FakeSurveyResultRepository : SurveyResultRepository{
-    override suspend fun getSurveyResult(user: User): SurveyResult {
+    override suspend fun getSurveyResult(userId: Int): SurveyResult {
         return SurveyResult(
             surveyCommentTitle = "양념, 순살, 구이",
             surveyCommentDescription = "특정한 맛을 강력하게 선호하거나,\n" +

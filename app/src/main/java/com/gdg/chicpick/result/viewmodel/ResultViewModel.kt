@@ -15,8 +15,8 @@ class ResultViewModel(
     private val _surveyResult = MutableLiveData<SurveyResult>()
     val surveyResult: LiveData<SurveyResult> get() = _surveyResult
 
-    fun getResult(user: User) = viewModelScope.launch {
-        _surveyResult.postValue(surveyResultRepository.getSurveyResult(user))
+    fun getResult(userId: Int) = viewModelScope.launch {
+        _surveyResult.postValue(surveyResultRepository.getSurveyResult(userId))
     }
 
 }

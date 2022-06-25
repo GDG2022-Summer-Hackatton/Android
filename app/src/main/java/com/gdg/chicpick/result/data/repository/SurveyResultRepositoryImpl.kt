@@ -9,7 +9,7 @@ import com.gdg.chicpick.result.model.repository.SurveyResultRepository
 class SurveyResultRepositoryImpl(
     private val surveyResultApi: SurveyResultApi
 ) : SurveyResultRepository{
-    override suspend fun getSurveyResult(user: User): SurveyResult {
-        return surveyResultApi.getSurveyResult(user.id).toSurveyResult()
+    override suspend fun getSurveyResult(userId: Int): SurveyResult {
+        return surveyResultApi.getSurveyResult(userId).toSurveyResult()
     }
 }
