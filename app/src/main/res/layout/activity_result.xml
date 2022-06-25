@@ -69,11 +69,11 @@
                         android:id="@+id/text_view_result_comment_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="당신은 근본 그 차제입니다."
                         android:textAppearance="@style/ChicPickText.CardView"
                         android:textColor="?attr/colorOnSecondary"
                         android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:text="당신은 근본 그 차제입니다." />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/text_view_result_comment_description"
@@ -81,9 +81,9 @@
                         android:layout_height="wrap_content"
                         android:lineSpacingExtra="5sp"
                         android:paddingTop="40dp"
+                        android:text="치킨 자체의 식감과 미묘한 맛을 즐깁니다.\n부위별로 보다 다채로운 식감을 즐기고 튀긴 치킨 특유의 바삭함을 선호합니다."
                         android:textAppearance="@style/ChicPickText.CardView"
-                        android:textSize="16sp"
-                        android:text="치킨 자체의 식감과 미묘한 맛을 즐깁니다.\n부위별로 보다 다채로운 식감을 즐기고 튀긴 치킨 특유의 바삭함을 선호합니다." />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -106,11 +106,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:lineSpacingExtra="5sp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     android:textAppearance="@style/ChicPickText.CardView"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    tools:text="BBQ 황금 올리브" />
+                    tools:text="BBQ 황금 올리브ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹ" />
 
             </androidx.cardview.widget.CardView>
 
@@ -158,8 +159,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:lineSpacingExtra="5sp"
                     android:textAppearance="@style/ChicPickText.CardView"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     tools:text="BHC 핫 후라이드" />
@@ -210,8 +212,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:lineSpacingExtra="5sp"
                     android:textAppearance="@style/ChicPickText.CardView"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     tools:text="교촌치킨 레드 콤보" />
@@ -255,8 +258,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="24dp"
-        android:gravity="center_vertical"
         android:background="@drawable/shape_modify_result_button"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <ImageView
@@ -265,9 +268,9 @@
             android:layout_gravity="end|center_vertical"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_long_arrow"
+            android:paddingStart="40dp"
             android:paddingEnd="16dp"
-            android:paddingStart="40dp"/>
+            android:src="@drawable/ic_long_arrow" />
 
         <TextView
             android:layout_width="0dp"
@@ -287,23 +290,22 @@
     </LinearLayout>
 
 
-
     <TextView
         android:id="@+id/text_view_already_have_mbti"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_gravity="bottom"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
-        android:layout_gravity="bottom"
         android:background="@drawable/shape_floating_button"
         android:backgroundTint="?attr/colorOnSecondary"
-        android:textColor="?attr/colorSecondary"
         android:elevation="40dp"
         android:gravity="center"
         android:text="결과 공유하기"
         android:textAppearance="@style/Theme.ChicPick.CardView"
+        android:textColor="?attr/colorSecondary"
         android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
 </FrameLayout>
