@@ -1,5 +1,6 @@
 package com.gdg.chicpick.login
 
+import com.gdg.chicpick.contant.BASE_URL
 import com.gdg.chicpick.login.data.LoginApi
 import com.gdg.chicpick.login.data.repository.LoginRepositoryImpl
 import com.gdg.chicpick.login.model.repository.LoginRepository
@@ -15,7 +16,7 @@ object LoginInstances {
     val loginApi: LoginApi
         get() {
             return _loginApi ?: Retrofit.Builder()
-                .baseUrl("http://43.200.11.44:8080")
+                .baseUrl(BASE_URL)
                 .client(
                     OkHttpClient.Builder()
                         .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
