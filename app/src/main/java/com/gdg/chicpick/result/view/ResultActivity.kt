@@ -1,6 +1,5 @@
 package com.gdg.chicpick.result.view
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -73,32 +72,33 @@ class ResultActivity : AppCompatActivity() {
                 shareText(generateKeyword(surveyResult))
             }
 
-        top3Chicken.observe(this@ResultActivity) { chicken ->
-            if (chicken.isNotEmpty()) {
-                binding.textViewResultChicken1.text = chicken[0].name
-                binding.textViewResultChicken1.setOnClickListener {
-                    showChickenDetailDialog(chicken[0])
+            top3Chicken.observe(this@ResultActivity) { chicken ->
+                if (chicken.isNotEmpty()) {
+                    binding.textViewResultChicken1.text = chicken[0].name
+                    binding.textViewResultChicken1.setOnClickListener {
+                        showChickenDetailDialog(chicken[0])
+                    }
+                } else {
+                    binding.cardViewResultChicken1.isVisible = false
                 }
-            } else {
-                binding.cardViewResultChicken1.isVisible = false
-            }
 
-            if (chicken.size > 1) {
-                binding.textViewResultChicken2.text = chicken[1].name
-                binding.textViewResultChicken2.setOnClickListener {
-                    showChickenDetailDialog(chicken[1])
+                if (chicken.size > 1) {
+                    binding.textViewResultChicken2.text = chicken[1].name
+                    binding.textViewResultChicken2.setOnClickListener {
+                        showChickenDetailDialog(chicken[1])
+                    }
+                } else {
+                    binding.cardViewResultChicken2.isVisible = false
                 }
-            } else {
-                binding.cardViewResultChicken2.isVisible = false
-            }
 
-            if (chicken.size > 2) {
-                binding.textViewResultChicken3.text = chicken[2].name
-                binding.textViewResultChicken3.setOnClickListener {
-                    showChickenDetailDialog(chicken[2])
+                if (chicken.size > 2) {
+                    binding.textViewResultChicken3.text = chicken[2].name
+                    binding.textViewResultChicken3.setOnClickListener {
+                        showChickenDetailDialog(chicken[2])
+                    }
+                } else {
+                    binding.cardViewResultChicken3.isVisible = false
                 }
-            } else {
-                binding.cardViewResultChicken3.isVisible = false
             }
         }
     }
