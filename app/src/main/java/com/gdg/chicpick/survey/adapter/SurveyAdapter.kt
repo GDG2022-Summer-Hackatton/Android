@@ -803,9 +803,7 @@ class SurveyAdapter(private val onSurveyItemClickListener: OnSurveyItemClickList
         override fun bind(item: SurveyItem) {
             if (item is SurveyItem.Footer){
                 viewBinding.textViewSubmit.setOnClickListener {
-                    viewBinding.textViewSubmit.setOnClickListener {
-                        onSurveyItemClickListener.onSubmitClick()
-                    }
+                    onSurveyItemClickListener.onSubmitClick()
                 }
             }
         }
