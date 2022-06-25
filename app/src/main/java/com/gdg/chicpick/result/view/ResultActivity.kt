@@ -8,13 +8,15 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.gdg.chicpick.R
 import com.gdg.chicpick.databinding.ActivityResultBinding
-import com.gdg.chicpick.login.model.User
 import com.gdg.chicpick.login.view.LoginActivity
 import com.gdg.chicpick.result.ResultInstances
+import com.gdg.chicpick.result.model.RecommendedChicken
 import com.gdg.chicpick.result.model.SurveyResult
 import com.gdg.chicpick.result.viewmodel.ResultViewModel
 import com.gdg.chicpick.survey.view.SurveyActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class ResultActivity : AppCompatActivity() {
 
@@ -61,28 +63,39 @@ class ResultActivity : AppCompatActivity() {
             binding.textViewResultCommentTitle.text = surveyResult.surveyCommentTitle
             binding.textViewResultCommentDescription.text = surveyResult.surveyCommentDescription
             binding.imageViewResultType.setImageDrawable(
-                ContextCompat.getDrawable(this@ResultActivity, surveyResult.chickenType.getImageResource())
+                ContextCompat.getDrawable(
+                    this@ResultActivity,
+                    surveyResult.chickenType.getImageResource()
+                )
             )
             binding.textViewShareResult.setOnClickListener {
                 shareText(generateKeyword(surveyResult))
             }
 
-            // 추천 치킨 표시
-            surveyResult.recommendedChickens.let {
-                if (it.isNotEmpty()) {
-                    binding.textViewResultChicken1.text = it[0].chickenMenuName
+            top3Chicken.observe(this@ResultActivity) { chicken ->
+                if (chicken.isNotEmpty()) {
+                    binding.textViewResultChicken1.text = chicken[0].name
+                    binding.textViewResultChicken1.setOnClickListener {
+                        showChickenDetailDialog(chicken[0])
+                    }
                 } else {
                     binding.cardViewResultChicken1.isVisible = false
                 }
 
-                if (it.size > 1) {
-                    binding.textViewResultChicken2.text = it[1].chickenMenuName
+                if (chicken.size > 1) {
+                    binding.textViewResultChicken2.text = chicken[1].name
+                    binding.textViewResultChicken2.setOnClickListener {
+                        showChickenDetailDialog(chicken[1])
+                    }
                 } else {
                     binding.cardViewResultChicken2.isVisible = false
                 }
 
-                if (it.size > 2) {
-                    binding.textViewResultChicken3.text = it[2].chickenMenuName
+                if (chicken.size > 2) {
+                    binding.textViewResultChicken3.text = chicken[2].name
+                    binding.textViewResultChicken3.setOnClickListener {
+                        showChickenDetailDialog(chicken[2])
+                    }
                 } else {
                     binding.cardViewResultChicken3.isVisible = false
                 }
@@ -90,7 +103,15 @@ class ResultActivity : AppCompatActivity() {
         }
     }
 
-    private fun generateKeyword(surveyResult: SurveyResult) : String{
+    private fun showChickenDetailDialog(recommendedChicken: RecommendedChicken) {
+        MaterialAlertDialogBuilder(this, R.style.MaterialAlertDialogStyle_Rounded)
+            .setTitle("${recommendedChicken.brand} ${recommendedChicken.name}")
+            .setMessage(recommendedChicken.description)
+            .setPositiveButton("닫기") { _, _ -> }
+            .show()
+    }
+
+    private fun generateKeyword(surveyResult: SurveyResult): String {
         val stringBuilder = StringBuilder()
 
         stringBuilder.append(surveyResult.chickenType.toKeyword())

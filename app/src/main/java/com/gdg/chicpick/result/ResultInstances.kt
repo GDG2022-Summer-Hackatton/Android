@@ -4,7 +4,6 @@ import com.gdg.chicpick.contant.BASE_URL
 import com.gdg.chicpick.login.data.api.LoginApi
 import com.gdg.chicpick.login.model.repository.LoginRepository
 import com.gdg.chicpick.result.data.api.SurveyResultApi
-import com.gdg.chicpick.result.data.repository.FakeSurveyResultRepository
 import com.gdg.chicpick.result.data.repository.SurveyResultRepositoryImpl
 import com.gdg.chicpick.result.model.repository.SurveyResultRepository
 import okhttp3.OkHttpClient

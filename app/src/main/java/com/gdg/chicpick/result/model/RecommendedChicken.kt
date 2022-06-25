@@ -1,6 +1,8 @@
 package com.gdg.chicpick.result.model
 
 data class RecommendedChicken(
-    val chickenMenuName: String,
-    val chickenMenuMatch: Double
+    val brand: String,
+    val name: String,
+    val description: String,
+    val score: Double
 )
