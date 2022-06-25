@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.gdg.chicpick.databinding.ActivityLoginBinding
 import com.gdg.chicpick.login.LoginInstances
 import com.gdg.chicpick.login.viewmodel.LoginViewModel
+import com.gdg.chicpick.result.ResultActivity
 import com.gdg.chicpick.survey.view.SurveyActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -54,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
 
         loginUser.observe(this@LoginActivity) { loginUser ->
             if (loginUser.hasSurvey) {
-
+                startActivity(Intent(this@LoginActivity, ResultActivity::class.java))
             } else {
                 startActivity(Intent(this@LoginActivity, SurveyActivity::class.java))
             }
