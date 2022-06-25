@@ -5,12 +5,60 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.gdg.chicpick.R
+import com.gdg.chicpick.contant.BASE_URL
+import com.gdg.chicpick.login.LoginInstances
+import com.gdg.chicpick.login.data.LoginApi
 import com.gdg.chicpick.survey.model.ButtonText
 import com.gdg.chicpick.survey.model.SliderContent
 import com.gdg.chicpick.survey.model.SurveyItem
+import com.gdg.chicpick.survey.network.SurveyService
+import com.gdg.chicpick.survey.network.model.RequestSubmitSurvey
 import com.gdg.chicpick.survey.setValueAfter
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class SurveyViewModel(application: Application) : AndroidViewModel(application) {
+    private val okHttpClient = OkHttpClient.Builder()
+        .build()
+
+    private val retrofit = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .client(okHttpClient)
+        .build()
+
+    private val surveyApi = retrofit.create(SurveyService::class.java)
+
+    fun submitSurvey() {
+        val codes = mutableListOf<String>()
+
+        surveyItems.value?.let { list ->
+            list.forEach {
+                if (it !is SurveyItem.Header) { // 헤더가 아닌 경우 코드 추출.
+                    codes.add(it.getCode())
+                }
+            }
+        }
+
+        val request = RequestSubmitSurvey(
+            q1 = codes[0],
+            q2 = codes[1],
+            q3 = codes[2],
+            q4 = codes[3],
+            q5 = codes[4],
+            q6 = codes[5],
+            q7 = codes[6],
+            q8 = codes[7],
+            q9 = codes[8],
+            q10 = codes[9],
+            q11 = codes[10],
+            q12 = codes[11],
+        )
+
+        println("zzzzzzzz:$request")
+    }
+
     private val _surveyItems = MutableLiveData(
         listOf(
             SurveyItem.Header(id = 0),
