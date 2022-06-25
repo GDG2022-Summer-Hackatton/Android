@@ -14,6 +14,7 @@ import androidx.viewbinding.ViewBinding
 import com.gdg.chicpick.R
 import com.gdg.chicpick.databinding.*
 import com.gdg.chicpick.survey.gone
+import com.gdg.chicpick.survey.invisible
 import com.gdg.chicpick.survey.model.SurveyItem
 import com.gdg.chicpick.survey.model.SurveyItem.MultiSelection
 import com.gdg.chicpick.survey.model.SurveyItem.SingleSelection.SelectedButtonType
@@ -451,8 +452,8 @@ class SurveyAdapter(private val onSurveyItemClickListener: OnSurveyItemClickList
 
                     with(buttonPair3) {
                         // 버튼 5개 표시.
-                        buttonSecond.gone()
-                        textViewDescription2.gone()
+                        buttonSecond.invisible()
+                        textViewDescription2.invisible()
 
                         buttonFirst.text = item.fifthButtonText.title
                         buttonSecond.text = item.sixButtonText.title
