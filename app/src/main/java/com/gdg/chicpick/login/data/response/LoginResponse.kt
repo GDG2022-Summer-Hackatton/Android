@@ -4,6 +4,6 @@ data class LoginResponse(
     val id: Int,
     val email: String,
     val password: String,
-    val hasSurvey: Boolean
+    val surveyId: Int?
 )
 
