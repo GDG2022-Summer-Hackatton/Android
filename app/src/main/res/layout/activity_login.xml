@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/layout_login_form"
+        android:src="@drawable/glass_chicken"
+        android:padding="39dp"
+        android:layout_marginTop="39dp"/>
+
+    <LinearLayout
+        android:id="@+id/layout_login_form"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:paddingStart="39dp"
+        android:paddingEnd="39dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/layout_sns_form">
+
+        <EditText
+            android:id="@+id/edit_text_email"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:hint="E-mail"
+            android:inputType="textEmailAddress"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:textColor="?attr/colorPrimary"
+            android:textColorHint="?attr/colorPrimary"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/don_t_care_unselected" />
+
+        <EditText
+            android:id="@+id/edit_text_password"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
+            android:background="@null"
+            android:hint="PW"
+            android:inputType="textPassword"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:textColor="?attr/colorPrimary"
+            android:textColorHint="?attr/colorPrimary"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/don_t_care_unselected" />
+
+        <TextView
+            android:id="@+id/text_view_login"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/shape_floating_button"
+            android:backgroundTint="?attr/colorPrimary"
+            android:elevation="40dp"
+            android:gravity="center"
+            android:text="로그인"
+            android:textAppearance="@style/Theme.ChicPick.CardView"
+            android:textColor="@color/secondary"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_sns_form"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginBottom="78dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/text_view_sns"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:text="SNS"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/sns_divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_login_form"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <View
+            android:id="@+id/sns_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="39dp"
+            android:layout_marginEnd="39dp"
+            android:background="@color/don_t_care_unselected"
+            app:layout_constraintBottom_toTopOf="@id/image_view_sns_login_google"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view_sns" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/image_view_sns_login_apple"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="39dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_sns_login_button"
+                android:backgroundTint="#ffffff"
+                android:elevation="40dp"
+                android:src="@drawable/ic_sns_login_apple" />
+
+            <ImageView
+                android:id="@+id/image_view_sns_login_google"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_sns_login_button"
+                android:backgroundTint="#ffffff"
+                android:elevation="40dp"
+                android:src="@drawable/ic_sns_login_google" />
+
+            <ImageView
+                android:id="@+id/image_view_sns_login_facebook"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_sns_login_button"
+                android:backgroundTint="#4D74FF"
+                android:elevation="40dp"
+                android:src="@drawable/ic_sns_login_facebook" />
+
+            <ImageView
+                android:id="@+id/image_view_sns_login_naver"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="39dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_sns_login_button"
+                android:backgroundTint="#04B100"
+                android:elevation="40dp"
+                android:src="@drawable/ic_sns_login_naver" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
