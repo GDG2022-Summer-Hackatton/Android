@@ -443,6 +443,10 @@ class SurveyAdapter(private val onSurveyItemClickListener: OnSurveyItemClickList
                     }
 
                     with(buttonPair3) {
+                        // 버튼 5개 표시.
+                        buttonSecond.gone()
+                        textViewDescription2.gone()
+
                         buttonFirst.text = item.fifthButtonText.title
                         buttonSecond.text = item.sixButtonText.title
 
@@ -451,10 +455,12 @@ class SurveyAdapter(private val onSurveyItemClickListener: OnSurveyItemClickList
                             textViewDescription1.text = it
                         } ?: textViewDescription1.gone()
 
-                        item.sixButtonText.description?.let {
-                            textViewDescription2.visible()
-                            textViewDescription2.text = it
-                        } ?: textViewDescription2.gone()
+//                        item.sixButtonText.description?.let {
+//                            textViewDescription2.visible()
+//                            textViewDescription2.text = it
+//                        } ?: textViewDescription2.gone()
+
+
 
                         buttonFirst.setOnClickListener {
                             onSurveyItemClickListener.onSixButtonClick(
