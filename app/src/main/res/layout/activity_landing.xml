@@ -71,12 +71,13 @@
     <ImageView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/text_view_landing_description"
+        android:padding="39dp"
+        android:scaleType="centerInside"
         android:src="@drawable/glass_chicken"
-        android:scaleType="centerCrop"/>
+        app:layout_constraintBottom_toTopOf="@id/text_view_landing_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
