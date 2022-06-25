@@ -23,8 +23,11 @@
     </style>
 
     <style name="ChicPickText" parent="TextAppearance.AppCompat.Body2" />
+
     <style name="ChicPickText.CardView" parent="ChicPickText">
         <item name="android:textColor">?attr/colorOnSecondary</item>
+    </style>
+
     <style name="ButtonStyle">
         <item name="android:background">@drawable/shape_floating_button</item>
         <item name="android:elevation">40dp</item>

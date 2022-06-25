@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".splash.view.SplashActivity">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="211dp"
+        android:src="@drawable/glass_chicken" />
+
+    <TextView
+        android:id="@+id/text_view_landing_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:text="이제 더 이상 뭘 먹을지 고민하지 마세요!"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/text_view_landing_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="나만의 치킨 찾기"
+        android:layout_marginTop="24dp"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="25sp"/>
+
+</LinearLayout>
