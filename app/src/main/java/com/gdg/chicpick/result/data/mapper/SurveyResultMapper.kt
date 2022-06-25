@@ -85,9 +85,7 @@ fun SurveyResultResponse.toSurveyResult(): SurveyResult {
         }.mapIndexed { index, s ->
             RecommendedChicken(s, 1 - Random.nextDouble(0.05 * (index + 1), 0.15 * (index + 1)))
         },
-        taste = try {
-            listOf("맵", "단", "짠", "신")[q8.substring(1..1).toInt()]
-        } catch (e: Exception) { "맵" },
+        taste = listOf("맵", "단", "짠", "신", "맵")[q8.substring(1..1).toInt()],
         spicy = q9.substring(1..1).toInt()
     )
 }

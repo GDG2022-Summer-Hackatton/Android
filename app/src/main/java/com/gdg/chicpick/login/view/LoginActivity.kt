@@ -57,7 +57,7 @@ class LoginActivity : AppCompatActivity() {
 
         loginUser.observe(this@LoginActivity) { loginUser ->
             if (loginUser.hasSurvey) {
-                resultActivityContract.launch(loginUser)
+                resultActivityContract.launch(loginUser.id)
             } else {
                 startActivity(Intent(this@LoginActivity, SurveyActivity::class.java).apply {
                     putExtra(EXTRA_ID, loginUser.id)
