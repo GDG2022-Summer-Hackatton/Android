@@ -9,6 +9,7 @@ import com.gdg.chicpick.result.view.ResultActivity
 class ResultActivityContract : ActivityResultContract<Int, Unit>() {
     override fun createIntent(context: Context, input: Int): Intent {
         return Intent(context, ResultActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             putExtra("userId", input)
         }
     }
