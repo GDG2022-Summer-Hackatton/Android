@@ -20,6 +20,7 @@ class SplashActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.Main).launch {
             delay(2000)
             loginActivityContract.launch(null)
+            finish()
         }
     }
 }

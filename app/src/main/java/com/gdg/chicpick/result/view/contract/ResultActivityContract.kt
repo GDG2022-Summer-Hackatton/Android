@@ -6,10 +6,10 @@ import androidx.activity.result.contract.ActivityResultContract
 import com.gdg.chicpick.login.model.User
 import com.gdg.chicpick.result.view.ResultActivity
 
-class ResultActivityContract : ActivityResultContract<User, Unit>() {
-    override fun createIntent(context: Context, input: User): Intent {
+class ResultActivityContract : ActivityResultContract<Int, Unit>() {
+    override fun createIntent(context: Context, input: Int): Intent {
         return Intent(context, ResultActivity::class.java).apply {
-            putExtra("userId", input.id)
+            putExtra("userId", input)
         }
     }
 

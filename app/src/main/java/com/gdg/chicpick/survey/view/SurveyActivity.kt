@@ -1,15 +1,20 @@
 package com.gdg.chicpick.survey.view
 
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SimpleItemAnimator
+import com.gdg.chicpick.R
 import com.gdg.chicpick.databinding.ActivitySurveyBinding
+import com.gdg.chicpick.login.view.LoginActivity.Companion.EXTRA_ID
 import com.gdg.chicpick.survey.adapter.SurveyAdapter
 import com.gdg.chicpick.survey.adapter.SurveyItemDecorator
 import com.gdg.chicpick.survey.model.SurveyItem
 import com.gdg.chicpick.survey.viewmodel.SurveyViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.dialog.MaterialDialogs
 
 class SurveyActivity : AppCompatActivity(), SurveyAdapter.OnSurveyItemClickListener {
     private val viewBinding by lazy {
@@ -19,6 +24,10 @@ class SurveyActivity : AppCompatActivity(), SurveyAdapter.OnSurveyItemClickListe
     private val viewModel by viewModels<SurveyViewModel>()
 
     private val surveyAdapter = SurveyAdapter(this)
+
+    private val userId by lazy {
+        intent?.getIntExtra(EXTRA_ID, 0) ?: 0
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,11 +102,17 @@ class SurveyActivity : AppCompatActivity(), SurveyAdapter.OnSurveyItemClickListe
         viewModel.updateSlider(slider, clickedButtonType)
     }
 
-    override fun onMustSelectClick() {
-
+    override fun onMustSelectClick(item: SurveyItem.MustSelect) {
+        val items = SurveyItem.MustSelect.mustSelectItemMap.values.map { it.first }.toTypedArray()
+        MaterialAlertDialogBuilder(this, R.style.MyAlertDialog)
+            .setSingleChoiceItems(items, item.selectedItem) { dialog, which ->
+                viewModel.updateMustSelect(which)
+                dialog.dismiss()
+            }
+            .show()
     }
 
     override fun onSubmitClick() {
-
+        viewModel.submitSurvey(userId)
     }
 }

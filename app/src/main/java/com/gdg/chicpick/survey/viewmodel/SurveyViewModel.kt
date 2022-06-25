@@ -1,16 +1,81 @@
 package com.gdg.chicpick.survey.viewmodel
 
 import android.app.Application
+import android.content.Intent
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.gdg.chicpick.R
+import com.gdg.chicpick.contant.BASE_URL
+import com.gdg.chicpick.login.LoginInstances
 import com.gdg.chicpick.survey.model.ButtonText
 import com.gdg.chicpick.survey.model.SliderContent
 import com.gdg.chicpick.survey.model.SurveyItem
+import com.gdg.chicpick.survey.network.SurveyService
+import com.gdg.chicpick.survey.network.model.RequestSubmitSurvey
 import com.gdg.chicpick.survey.setValueAfter
+import kotlinx.coroutines.launch
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.Exception
 
 class SurveyViewModel(application: Application) : AndroidViewModel(application) {
+    private val okHttpClient = OkHttpClient.Builder()
+        .addInterceptor(HttpLoggingInterceptor().apply {
+            setLevel(HttpLoggingInterceptor.Level.BODY)
+        }).build()
+
+    private val retrofit = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .client(okHttpClient)
+        .build()
+
+    private val surveyApi = retrofit.create(SurveyService::class.java)
+
+    fun submitSurvey(userId: Int) {
+        val codes = mutableListOf<String>()
+
+        surveyItems.value?.let { list ->
+            list.forEach {
+                if (it !is SurveyItem.Header) { // 헤더가 아닌 경우 코드 추출.
+                    codes.add(it.getCode())
+                }
+            }
+        }
+
+        val request = RequestSubmitSurvey(
+            memberId = userId,
+            q1 = codes[0],
+            q2 = codes[1],
+            q3 = codes[2],
+            q4 = codes[3],
+            q5 = codes[4],
+            q6 = codes[5],
+            q7 = codes[6],
+            q8 = codes[7],
+            q9 = codes[8],
+            q10 = codes[9],
+            q11 = codes[10],
+            q12 = codes[11],
+        )
+
+        println("zzzzzzzzzzzz" + request)
+        viewModelScope.launch {
+            try {
+                val resp = surveyApi.submitSurvey(request)
+                println("dddddddddddd" + resp)
+            } catch (e: Exception) {
+                println("zzzzzz:$e")
+            }
+
+
+        }
+    }
+
     private val _surveyItems = MutableLiveData(
         listOf(
             SurveyItem.Header(id = 0),
@@ -282,19 +347,11 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
     ) {
         _surveyItems.setValueAfter {
             toMutableList().apply {
-                val donTCare = SurveyItem.MultiSelection.SelectedButtonType.DonTCare
                 val index = indexOf(multiButtons)
                 val mutableList = multiButtons.selectedButtonTypes.toMutableList()
 
-                if (selectedButtonType == donTCare) {
-                    mutableList.clear()
-                    mutableList.add(donTCare)
-                } else {
-                    if (mutableList.remove(selectedButtonType).not()) {
-                        mutableList.remove(donTCare)
-                        mutableList.add(selectedButtonType)
-                    }
-                }
+                mutableList.clear()
+                mutableList.add(selectedButtonType)
 
                 if (index > -1) {
                     set(
@@ -308,25 +365,32 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
+    fun updateMustSelect(key: Int) {
+        _surveyItems.setValueAfter {
+            val mustSelect = filterIsInstance<SurveyItem.MustSelect>().firstOrNull()
+
+            if (mustSelect == null) {
+                this
+            } else {
+                val index = indexOf(mustSelect)
+                toMutableList().apply {
+                    set(index, mustSelect.copy(selectedItem = key))
+                }
+            }
+        }
+    }
+
     fun updateSlider(
         slider: SurveyItem.MultiSelection.Slider,
         selectedButtonType: SurveyItem.MultiSelection.SelectedButtonType
     ) {
         _surveyItems.setValueAfter {
             toMutableList().apply {
-                val donTCare = SurveyItem.MultiSelection.SelectedButtonType.DonTCare
                 val index = indexOf(slider)
                 val mutableList = slider.selectedButtonTypes.toMutableList()
 
-                if (selectedButtonType == donTCare) {
-                    mutableList.clear()
-                    mutableList.add(donTCare)
-                } else {
-                    if (mutableList.remove(selectedButtonType).not()) {
-                        mutableList.remove(donTCare)
-                        mutableList.add(selectedButtonType)
-                    }
-                }
+                mutableList.clear()
+                mutableList.add(selectedButtonType)
 
                 if (index > -1) {
                     set(
