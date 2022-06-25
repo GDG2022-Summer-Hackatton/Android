@@ -69,29 +69,20 @@ class ResultActivity : AppCompatActivity() {
             surveyResult.recommendedChickens.let {
                 if (it.isNotEmpty()) {
                     binding.textViewResultChicken1.text = it[0].chickenMenuName
-                    binding.textViewResultChickenPercentage1.text =
-                        String.format("%.0f%%", it[0].chickenMenuMatch * 100)
                 } else {
-                    binding.textViewResultChicken1.isVisible = false
-                    binding.textViewResultChickenPercentage1.isVisible = false
+                    binding.cardViewResultChicken1.isVisible = false
                 }
 
                 if (it.size > 1) {
                     binding.textViewResultChicken2.text = it[1].chickenMenuName
-                    binding.textViewResultChickenPercentage2.text =
-                        String.format("%.0f%%", it[1].chickenMenuMatch * 100)
                 } else {
-                    binding.textViewResultChicken2.isVisible = false
-                    binding.textViewResultChickenPercentage2.isVisible = false
+                    binding.cardViewResultChicken2.isVisible = false
                 }
 
                 if (it.size > 2) {
                     binding.textViewResultChicken3.text = it[2].chickenMenuName
-                    binding.textViewResultChickenPercentage3.text =
-                        String.format("%.0f%%", it[2].chickenMenuMatch * 100)
                 } else {
-                    binding.textViewResultChicken3.isVisible = false
-                    binding.textViewResultChickenPercentage3.isVisible = false
+                    binding.cardViewResultChicken3.isVisible = false
                 }
             }
         }

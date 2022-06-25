@@ -16,6 +16,15 @@
         <entry key="app/src/main/res/layout/activity_survey.xml" value="0.10854700854700855" />
         <entry key="app/src/main/res/layout/slider.xml" value="0.23162393162393163" />
         <entry key="app/src/main/res/layout/survey_footer.xml" value="0.11140350877192982" />
+        <entry key="app/src/main/res/layout/survey_four_buttons.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/survey_header.xml" value="0.11140350877192982" />
+        <entry key="app/src/main/res/layout/survey_multi_buttons.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/survey_must_select.xml" value="0.11140350877192982" />
+        <entry key="app/src/main/res/layout/survey_six_buttons.xml" value="0.11140350877192982" />
+        <entry key="app/src/main/res/layout/survey_slider.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/survey_slider_item.xml" value="0.11140350877192982" />
+        <entry key="app/src/main/res/layout/survey_three_buttons.xml" value="0.11140350877192982" />
+        <entry key="app/src/main/res/layout/survey_two_buttons.xml" value="0.11140350877192982" />
       </map>
     </option>
   </component>
