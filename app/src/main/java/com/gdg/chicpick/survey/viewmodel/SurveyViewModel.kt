@@ -9,7 +9,6 @@ import androidx.lifecycle.viewModelScope
 import com.gdg.chicpick.R
 import com.gdg.chicpick.contant.BASE_URL
 import com.gdg.chicpick.login.LoginInstances
-import com.gdg.chicpick.login.data.LoginApi
 import com.gdg.chicpick.survey.model.ButtonText
 import com.gdg.chicpick.survey.model.SliderContent
 import com.gdg.chicpick.survey.model.SurveyItem

@@ -11,7 +11,6 @@ import com.gdg.chicpick.databinding.ActivityLoginBinding
 import com.gdg.chicpick.login.LoginInstances
 import com.gdg.chicpick.login.viewmodel.LoginViewModel
 import com.gdg.chicpick.result.view.contract.ResultActivityContract
-import com.gdg.chicpick.result.ResultActivity
 import com.gdg.chicpick.survey.view.SurveyActivity
 
 class LoginActivity : AppCompatActivity() {
