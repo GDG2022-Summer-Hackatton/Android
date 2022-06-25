@@ -47,7 +47,7 @@ class SurveyActivity : AppCompatActivity(), SurveyAdapter.OnSurveyItemClickListe
 
         viewModel.addRespSuccess.observe(this) {
             if (it == true) {
-                resultActivityContract.launch(User(userId, "", false)) // 내부적으로 userId만 쓰므로. 이렇게 씁시다.
+                resultActivityContract.launch(userId) // 내부적으로 userId만 쓰므로. 이렇게 씁시다.
                 finish()
             }
         }
