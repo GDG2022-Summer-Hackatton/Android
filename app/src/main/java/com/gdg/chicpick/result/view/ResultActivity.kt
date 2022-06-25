@@ -12,8 +12,10 @@ import com.gdg.chicpick.R
 import com.gdg.chicpick.databinding.ActivityResultBinding
 import com.gdg.chicpick.login.view.LoginActivity
 import com.gdg.chicpick.result.ResultInstances
+import com.gdg.chicpick.result.captureScreen
 import com.gdg.chicpick.result.model.RecommendedChicken
 import com.gdg.chicpick.result.model.SurveyResult
+import com.gdg.chicpick.result.sendPngImage
 import com.gdg.chicpick.result.viewmodel.ResultViewModel
 import com.gdg.chicpick.survey.view.SurveyActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -69,7 +71,12 @@ class ResultActivity : AppCompatActivity() {
                 )
             )
             binding.textViewShareResult.setOnClickListener {
-                shareText(generateKeyword(surveyResult))
+                // shareText(generateKeyword(surveyResult))
+                captureScreen(binding.scrollView, onCompressed = {
+                    sendPngImage(it)
+                }) {
+
+                }
             }
 
             top3Chicken.observe(this@ResultActivity) { chicken ->
