@@ -1,5 +1,6 @@
 package com.gdg.chicpick.result
 
+import com.gdg.chicpick.contant.BASE_URL
 import com.gdg.chicpick.login.data.api.LoginApi
 import com.gdg.chicpick.login.model.repository.LoginRepository
 import com.gdg.chicpick.result.data.api.SurveyResultApi
@@ -18,7 +19,7 @@ object ResultInstances {
     val surveyResultApi: SurveyResultApi
         get() {
             return _surveyResultApi ?: Retrofit.Builder()
-                .baseUrl("http://43.200.11.44:8080")
+                .baseUrl(BASE_URL)
                 .client(
                     OkHttpClient.Builder()
                         .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
