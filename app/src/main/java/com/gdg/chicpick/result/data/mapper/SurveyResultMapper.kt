@@ -73,7 +73,7 @@ fun SurveyResultResponse.toSurveyResult(): SurveyResult {
             ChickenType.RSSO -> "특정한 맛을 강력하게 선호하거나, 변칙적인 맛을 즐길 줄 알고 있습니다.\n편하게 먹는 것을 즐기고 구운 치킨 특유의 부드러움, 촉촉함을 선호하거나 칼로리를 신경씁니다."
         },
         chickenType = chickenType,
-        recommendedChickens = when (chickenType) {
+        /*recommendedChickens = when (chickenType) {
             ChickenType.F -> listOf("BBQ 황금 올리브", "BHC 핫 후라이드", "교촌치킨 레드 콤보")
             ChickenType.FS -> listOf("순수치킨 순살치킨", "또래오래 순살치킨", "맘스터치 후라이드 싸이 순살")
             ChickenType.FSO -> listOf("페리카나 양념치킨", "BHC 맛초킹", "처갓집 슈프림 양념치킨")
@@ -84,7 +84,7 @@ fun SurveyResultResponse.toSurveyResult(): SurveyResult {
             ChickenType.RSSO -> listOf("푸라닭 고추마요 순살", "오빠닭 요거닭", "굽네 볼케이노 순살")
         }.mapIndexed { index, s ->
             RecommendedChicken(s, 1 - Random.nextDouble(0.05 * (index + 1), 0.15 * (index + 1)))
-        },
+        },*/
         taste = listOf("맵", "단", "짠", "신", "맵", "단")[q8.substring(1..1).toInt()],
         spicy = q9.substring(1..1).toInt()
     )

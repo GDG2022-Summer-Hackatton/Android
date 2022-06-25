@@ -5,6 +5,5 @@ data class SurveyResult(
     val surveyCommentDescription: String,
     val chickenType: ChickenType,
     val taste: String,
-    val spicy: Int,
-    val recommendedChickens: List<RecommendedChicken>
+    val spicy: Int
 )

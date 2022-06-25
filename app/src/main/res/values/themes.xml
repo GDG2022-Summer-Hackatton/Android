@@ -49,9 +49,28 @@
         <item name="android:textColor">@color/text_floating</item>
     </style>
 
-    <style name="MaterialAlertDialogStyle" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+    <style name="MaterialAlertDialogStyle" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
         <item name="android:textColor">@color/text_floating</item>
         <item name="colorSecondary">@color/text_floating</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialogTitle</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/MaterialAlertDialogBody</item>
+    </style>
+
+    <style name="MaterialAlertDialogStyle.Rounded" parent="MaterialAlertDialogStyle">
+        <item name="shapeAppearanceOverlay">@style/DialogCorners</item>
+        <item name="android:textColorPrimary">@color/text_floating</item>
+    </style>
+
+    <style name="DialogCorners">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <style name="MaterialAlertDialogTitle" parent="@style/MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textColor">@color/text_floating</item>
+    </style>
+    <style name="MaterialAlertDialogBody" parent="@style/MaterialAlertDialog.MaterialComponents.Body.Text">
+        <item name="android:textColor">@color/text_floating</item>
     </style>
 
 </resources>

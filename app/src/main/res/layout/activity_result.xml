@@ -34,7 +34,6 @@
                 android:layout_marginTop="70dp"
                 android:gravity="center"
                 android:letterSpacing="0.25"
-                android:lineSpacingExtra="-33sp"
                 android:text="본뼈튀-단2"
                 android:textColor="?attr/colorPrimary"
                 android:textSize="50sp"
