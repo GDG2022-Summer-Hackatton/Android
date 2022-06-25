@@ -12,7 +12,7 @@ import com.gdg.chicpick.login.viewmodel.LoginViewModel
 
 class LoginActivity : AppCompatActivity() {
 
-    private val binding : ActivityLoginBinding by lazy {
+    private val binding: ActivityLoginBinding by lazy {
         ActivityLoginBinding.inflate(layoutInflater)
     }
 
@@ -43,13 +43,15 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initViewModel() = with(viewModel) {
         loginError.observe(this@LoginActivity) {
-            Toast.makeText(this@LoginActivity, it.message ?: "Unknown error", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this@LoginActivity,
+                it.localizedMessage ?: "Unknown error",
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
-        loginCompleted.observe(this@LoginActivity) { loginCompleted ->
-            if(loginCompleted) {
-                Toast.makeText(this@LoginActivity, "Login ok", Toast.LENGTH_SHORT).show()
-            }
+        loginUser.observe(this@LoginActivity) { loginUser ->
+            Toast.makeText(this@LoginActivity, loginUser.id.toString(), Toast.LENGTH_SHORT).show()
         }
     }
 }

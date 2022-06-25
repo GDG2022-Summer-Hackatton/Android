@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gdg.chicpick.login.model.User
 import com.gdg.chicpick.login.model.repository.LoginRepository
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -15,8 +16,8 @@ class LoginViewModel(
 
     var loginJob: Job? = null
 
-    private val _loginCompleted = MutableLiveData(false)
-    val loginCompleted : LiveData<Boolean> get() = _loginCompleted
+    private val _loginUser = MutableLiveData<User>()
+    val loginUser : LiveData<User> get() = _loginUser
 
     private val _loginError = MutableLiveData<Throwable>()
     val loginError : LiveData<Throwable> get() = _loginError
@@ -25,10 +26,10 @@ class LoginViewModel(
         email: String,
         password: String
     ) {
-        if(loginJob?.isActive == false) {
+        if(loginJob?.isActive != true) {
             loginJob = viewModelScope.launch {
                 try {
-                    loginRepository.login(email, password)
+                    _loginUser.postValue(loginRepository.login(email, password))
                 } catch (e: Exception) {
                     _loginError.postValue(e)
                 }
