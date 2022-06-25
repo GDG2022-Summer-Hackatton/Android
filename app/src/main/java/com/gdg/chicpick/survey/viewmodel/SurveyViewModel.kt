@@ -282,19 +282,11 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
     ) {
         _surveyItems.setValueAfter {
             toMutableList().apply {
-                val donTCare = SurveyItem.MultiSelection.SelectedButtonType.DonTCare
                 val index = indexOf(multiButtons)
                 val mutableList = multiButtons.selectedButtonTypes.toMutableList()
 
-                if (selectedButtonType == donTCare) {
-                    mutableList.clear()
-                    mutableList.add(donTCare)
-                } else {
-                    if (mutableList.remove(selectedButtonType).not()) {
-                        mutableList.remove(donTCare)
-                        mutableList.add(selectedButtonType)
-                    }
-                }
+                mutableList.clear()
+                mutableList.add(selectedButtonType)
 
                 if (index > -1) {
                     set(
@@ -314,19 +306,11 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
     ) {
         _surveyItems.setValueAfter {
             toMutableList().apply {
-                val donTCare = SurveyItem.MultiSelection.SelectedButtonType.DonTCare
                 val index = indexOf(slider)
                 val mutableList = slider.selectedButtonTypes.toMutableList()
 
-                if (selectedButtonType == donTCare) {
-                    mutableList.clear()
-                    mutableList.add(donTCare)
-                } else {
-                    if (mutableList.remove(selectedButtonType).not()) {
-                        mutableList.remove(donTCare)
-                        mutableList.add(selectedButtonType)
-                    }
-                }
+                mutableList.clear()
+                mutableList.add(selectedButtonType)
 
                 if (index > -1) {
                     set(
