@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.gdg.chicpick.R
 import com.gdg.chicpick.databinding.ActivitySurveyBinding
+import com.gdg.chicpick.login.model.User
 import com.gdg.chicpick.login.view.LoginActivity.Companion.EXTRA_ID
+import com.gdg.chicpick.result.view.contract.ResultActivityContract
 import com.gdg.chicpick.survey.adapter.SurveyAdapter
 import com.gdg.chicpick.survey.adapter.SurveyItemDecorator
 import com.gdg.chicpick.survey.model.SurveyItem
@@ -21,12 +23,14 @@ class SurveyActivity : AppCompatActivity(), SurveyAdapter.OnSurveyItemClickListe
         ActivitySurveyBinding.inflate(layoutInflater)
     }
 
+    private val resultActivityContract = registerForActivityResult(ResultActivityContract()) {}
+
     private val viewModel by viewModels<SurveyViewModel>()
 
     private val surveyAdapter = SurveyAdapter(this)
 
     private val userId by lazy {
-        intent?.getIntExtra(EXTRA_ID, 0) ?: 0
+        intent?.getIntExtra(EXTRA_ID, 1) ?: 1
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +43,13 @@ class SurveyActivity : AppCompatActivity(), SurveyAdapter.OnSurveyItemClickListe
     private fun initData() {
         viewModel.surveyItems.observe(this) {
             surveyAdapter.submitList(it)
+        }
+
+        viewModel.respSuccess.observe(this) {
+            if (it == true) {
+                resultActivityContract.launch(User(userId, "", false)) // 내부적으로 userId만 쓰므로. 이렇게 씁시다.
+                finish()
+            }
         }
     }
 

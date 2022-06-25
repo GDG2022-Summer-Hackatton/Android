@@ -5,6 +5,7 @@ import com.gdg.chicpick.result.data.response.SurveyResultResponse
 import com.gdg.chicpick.result.model.ChickenType
 import com.gdg.chicpick.result.model.RecommendedChicken
 import com.gdg.chicpick.result.model.SurveyResult
+import java.lang.Exception
 import kotlin.random.Random
 
 fun SurveyResultResponse.toSurveyResult(): SurveyResult {
@@ -84,7 +85,9 @@ fun SurveyResultResponse.toSurveyResult(): SurveyResult {
         }.mapIndexed { index, s ->
             RecommendedChicken(s, 1 - Random.nextDouble(0.05 * (index + 1), 0.15 * (index + 1)))
         },
-        taste = listOf("맵", "단", "짠", "신")[q8.substring(1..1).toInt()],
+        taste = try {
+            listOf("맵", "단", "짠", "신")[q8.substring(1..1).toInt()]
+        } catch (e: Exception) { "맵" },
         spicy = q9.substring(1..1).toInt()
     )
 }

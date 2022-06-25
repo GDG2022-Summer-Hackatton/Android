@@ -14,6 +14,7 @@ import com.gdg.chicpick.survey.model.SliderContent
 import com.gdg.chicpick.survey.model.SurveyItem
 import com.gdg.chicpick.survey.network.SurveyService
 import com.gdg.chicpick.survey.network.model.RequestSubmitSurvey
+import com.gdg.chicpick.survey.network.model.ResponseSubmitSurvey
 import com.gdg.chicpick.survey.setValueAfter
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
@@ -35,6 +36,9 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
         .build()
 
     private val surveyApi = retrofit.create(SurveyService::class.java)
+
+    private val _respSuccess = MutableLiveData<Boolean>()
+    val respSuccess : LiveData<Boolean> get() = _respSuccess
 
     fun submitSurvey(userId: Int) {
         val codes = mutableListOf<String>()
@@ -62,17 +66,16 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
             q11 = codes[10],
             q12 = codes[11],
         )
-
-        println("zzzzzzzzzzzz" + request)
+        println("SurveyViewModel req :$request")
         viewModelScope.launch {
             try {
-                val resp = surveyApi.submitSurvey(request)
-                println("dddddddddddd" + resp)
+                surveyApi.submitSurvey(request)
+                _respSuccess.value = true
+            } catch (e: java.io.EOFException) {
+                _respSuccess.value = true
             } catch (e: Exception) {
-                println("zzzzzz:$e")
+                println("SurveyViewModel exception :$e")
             }
-
-
         }
     }
 
@@ -209,7 +212,7 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
                 ),
             ),
             SurveyItem.SingleSelection.SixButton(
-                id = 8,
+                id = 9,
                 question = "Q9 / 12 - 매운맛 0~6단계",
                 firstButtonText = ButtonText(
                     title = "Lv.1",
@@ -237,7 +240,7 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
                 )
             ),
             SurveyItem.SingleSelection.ThreeButton(
-                id = 9,
+                id = 10,
                 question = "Q10 / 12 - 비용 vs 맛",
                 firstButtonText = ButtonText(
                     title = "가성비",
@@ -252,8 +255,8 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
                     description = "오로지 맛.",
                 )
             ),
-            SurveyItem.SingleSelection.ThreeButton(
-                id = 10,
+            SurveyItem.SingleSelection.TwoButton(
+                id = 11,
                 question = "Q11 / 12 - 냉동 여부",
                 firstButtonText = ButtonText(
                     title = "냉장",
@@ -262,19 +265,14 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
                 secondButtonText = ButtonText(
                     title = "냉동",
                     description = "값 육즙 육질",
-                ),
-                thirdButtonText = ButtonText(
-                    title = "상관 없음",
-                    description = "고기 자체의 식감보다 \n" +
-                            "양념의 맛이 더 중요한 경우",
                 )
             ),
             SurveyItem.MustSelect(
-                id = 11,
+                id = 12,
                 question = "Q12 / 12 - 치킨을 선택할 때 이것만은 꼭!"
             ),
             SurveyItem.Footer(
-                id = 12
+                id = 13
             )
         )
     )
