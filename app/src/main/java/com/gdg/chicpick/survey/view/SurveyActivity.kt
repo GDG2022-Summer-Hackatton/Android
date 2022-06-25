@@ -4,8 +4,10 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.gdg.chicpick.databinding.ActivitySurveyBinding
 import com.gdg.chicpick.survey.adapter.SurveyAdapter
+import com.gdg.chicpick.survey.adapter.SurveyItemDecorator
 import com.gdg.chicpick.survey.model.SurveyItem
 import com.gdg.chicpick.survey.viewmodel.SurveyViewModel
 
@@ -37,7 +39,14 @@ class SurveyActivity : AppCompatActivity(), SurveyAdapter.OnSurveyItemClickListe
                 adapter = surveyAdapter
                 layoutManager = LinearLayoutManager(context)
 
+                addItemDecoration(SurveyItemDecorator())
                 setHasFixedSize(true)
+
+                itemAnimator?.let {
+                    if (it is SimpleItemAnimator) {
+                        it.supportsChangeAnimations = false
+                    }
+                }
             }
         }
     }
@@ -47,5 +56,48 @@ class SurveyActivity : AppCompatActivity(), SurveyAdapter.OnSurveyItemClickListe
         selectedButtonType: SurveyItem.SingleSelection.SelectedButtonType
     ) {
         viewModel.updateTwoButton(twoButton, selectedButtonType)
+    }
+
+    override fun onThreeButtonClick(
+        threeButton: SurveyItem.SingleSelection.ThreeButton,
+        selectedButtonType: SurveyItem.SingleSelection.SelectedButtonType
+    ) {
+        viewModel.updateThreeButton(threeButton, selectedButtonType)
+    }
+
+    override fun onFourthButtonClick(
+        fourButton: SurveyItem.SingleSelection.FourButton,
+        selectedButtonType: SurveyItem.SingleSelection.SelectedButtonType
+    ) {
+        viewModel.updateFourButton(fourButton, selectedButtonType)
+    }
+
+    override fun onSixButtonClick(
+        sixButton: SurveyItem.SingleSelection.SixButton,
+        selectedButtonType: SurveyItem.SingleSelection.SelectedButtonType
+    ) {
+        viewModel.updateSixButton(sixButton, selectedButtonType)
+    }
+
+    override fun onMultiButtonsClick(
+        multiButtons: SurveyItem.MultiSelection.MultiButtons,
+        clickedButtonType: SurveyItem.MultiSelection.SelectedButtonType
+    ) {
+        viewModel.updateMultiButtons(multiButtons, clickedButtonType)
+    }
+
+    override fun onSliderClick(
+        slider: SurveyItem.MultiSelection.Slider,
+        clickedButtonType: SurveyItem.MultiSelection.SelectedButtonType
+    ) {
+        viewModel.updateSlider(slider, clickedButtonType)
+    }
+
+    override fun onMustSelectClick() {
+
+    }
+
+    override fun onSubmitClick() {
+
     }
 }

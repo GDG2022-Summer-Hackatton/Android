@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/background"
+    android:clipChildren="false"
+    android:clipToPadding="false"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -13,41 +15,25 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:textColor="@color/text"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Q1 / 14 - 근본 vs 변칙" />
 
-    <Button
-        android:id="@+id/button_first"
-        style="@style/ButtonStyle"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="24dp"
+
+    <include
+        android:id="@+id/button_pair"
+        layout="@layout/survey_button_pair"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
         android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toStartOf="@+id/button_second"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_question"
-        tools:text="기본 치킨" />
-
-    <Button
-        android:id="@+id/button_second"
-        style="@style/ButtonStyle"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="24dp"
-        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button_first"
-        app:layout_constraintTop_toTopOf="@+id/button_first"
-        tools:text="양념 치킨" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_question" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_don_t_care"
         style="@style/ButtonStyle"
         android:layout_width="0dp"
@@ -58,7 +44,8 @@
         android:text="상관 없음."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_first"
-        app:backgroundTint="@color/unselected"/>
+        app:layout_constraintTop_toBottomOf="@+id/button_pair"
+        app:backgroundTint="@color/don_t_care_unselected"
+        tools:ignore="HardcodedText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
