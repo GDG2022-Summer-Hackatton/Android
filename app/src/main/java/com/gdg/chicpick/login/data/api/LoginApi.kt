@@ -1,4 +1,4 @@
-package com.gdg.chicpick.login.data
+package com.gdg.chicpick.login.data.api
 
 import com.gdg.chicpick.login.data.request.LoginRequest
 import com.gdg.chicpick.login.data.response.LoginResponse

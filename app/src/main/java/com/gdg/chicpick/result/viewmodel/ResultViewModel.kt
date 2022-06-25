@@ -3,17 +3,20 @@ package com.gdg.chicpick.result.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.gdg.chicpick.result.model.ChickenMenuResult
+import androidx.lifecycle.viewModelScope
+import com.gdg.chicpick.login.model.User
+import com.gdg.chicpick.result.model.SurveyResult
+import com.gdg.chicpick.result.model.repository.SurveyResultRepository
+import kotlinx.coroutines.launch
 
-class ResultViewModel : ViewModel() {
-    private val _top3ChickenMenu = MutableLiveData<List<ChickenMenuResult>>()
-    val top3ChickenMenu: LiveData<List<ChickenMenuResult>> get() = _top3ChickenMenu
+class ResultViewModel(
+    private val surveyResultRepository: SurveyResultRepository
+) : ViewModel() {
+    private val _surveyResult = MutableLiveData<SurveyResult>()
+    val surveyResult: LiveData<SurveyResult> get() = _surveyResult
 
-    fun getResult() {
-        _top3ChickenMenu.value = listOf(
-            ChickenMenuResult("BBQ 황금 올리브", 0.98),
-            ChickenMenuResult("BHC 핫 후라이드", 0.92),
-            ChickenMenuResult("교촌치킨 레드 콤보", 0.86)
-        )
+    fun getResult(userId: Int) = viewModelScope.launch {
+        _surveyResult.postValue(surveyResultRepository.getSurveyResult(userId))
     }
+
 }

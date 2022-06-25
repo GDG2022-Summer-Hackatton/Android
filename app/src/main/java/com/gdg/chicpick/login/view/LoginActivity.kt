@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.gdg.chicpick.databinding.ActivityLoginBinding
 import com.gdg.chicpick.login.LoginInstances
 import com.gdg.chicpick.login.viewmodel.LoginViewModel
+import com.gdg.chicpick.result.view.contract.ResultActivityContract
 import com.gdg.chicpick.result.ResultActivity
 import com.gdg.chicpick.survey.view.SurveyActivity
 
@@ -18,6 +19,8 @@ class LoginActivity : AppCompatActivity() {
     private val binding: ActivityLoginBinding by lazy {
         ActivityLoginBinding.inflate(layoutInflater)
     }
+
+    private val resultActivityContract = registerForActivityResult(ResultActivityContract()) {}
 
     private val viewModel by viewModels<LoginViewModel> {
         object : ViewModelProvider.Factory {
@@ -55,8 +58,7 @@ class LoginActivity : AppCompatActivity() {
 
         loginUser.observe(this@LoginActivity) { loginUser ->
             if (loginUser.hasSurvey) {
-                startActivity(Intent(this@LoginActivity, ResultActivity::class.java))
-                finish()
+                resultActivityContract.launch(loginUser)
             } else {
                 startActivity(Intent(this@LoginActivity, SurveyActivity::class.java).apply {
                     putExtra(EXTRA_ID, loginUser.id)

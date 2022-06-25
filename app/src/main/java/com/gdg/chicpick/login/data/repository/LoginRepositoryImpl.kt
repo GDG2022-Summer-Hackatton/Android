@@ -1,6 +1,6 @@
 package com.gdg.chicpick.login.data.repository
 
-import com.gdg.chicpick.login.data.LoginApi
+import com.gdg.chicpick.login.data.api.LoginApi
 import com.gdg.chicpick.login.data.mapper.toUser
 import com.gdg.chicpick.login.data.request.LoginRequest
 import com.gdg.chicpick.login.model.User
