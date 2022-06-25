@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.gdg.chicpick.R
 import com.gdg.chicpick.databinding.ActivitySurveyBinding
+import com.gdg.chicpick.login.view.LoginActivity.Companion.EXTRA_ID
 import com.gdg.chicpick.survey.adapter.SurveyAdapter
 import com.gdg.chicpick.survey.adapter.SurveyItemDecorator
 import com.gdg.chicpick.survey.model.SurveyItem
@@ -23,6 +24,10 @@ class SurveyActivity : AppCompatActivity(), SurveyAdapter.OnSurveyItemClickListe
     private val viewModel by viewModels<SurveyViewModel>()
 
     private val surveyAdapter = SurveyAdapter(this)
+
+    private val userId by lazy {
+        intent?.getIntExtra(EXTRA_ID, 0) ?: 0
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -108,6 +113,6 @@ class SurveyActivity : AppCompatActivity(), SurveyAdapter.OnSurveyItemClickListe
     }
 
     override fun onSubmitClick() {
-
+        viewModel.submitSurvey(userId)
     }
 }

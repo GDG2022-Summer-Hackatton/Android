@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
         textViewLogin.setOnClickListener {
             viewModel.login(
                 email = editTextEmail.text.toString(),
-                password = editTextPassword.text.toString()
+                password = "1234" // editTextPassword.text.toString()
             )
         }
     }
@@ -56,9 +56,17 @@ class LoginActivity : AppCompatActivity() {
         loginUser.observe(this@LoginActivity) { loginUser ->
             if (loginUser.hasSurvey) {
                 startActivity(Intent(this@LoginActivity, ResultActivity::class.java))
+                finish()
             } else {
-                startActivity(Intent(this@LoginActivity, SurveyActivity::class.java))
+                startActivity(Intent(this@LoginActivity, SurveyActivity::class.java).apply {
+                    putExtra(EXTRA_ID, loginUser.id)
+                })
+                finish()
             }
         }
+    }
+
+    companion object {
+        const val EXTRA_ID = "Extra.Id"
     }
 }

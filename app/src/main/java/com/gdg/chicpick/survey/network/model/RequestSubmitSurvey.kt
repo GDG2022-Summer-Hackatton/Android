@@ -1,6 +1,7 @@
 package com.gdg.chicpick.survey.network.model
 
 data class RequestSubmitSurvey(
+    val memberId: Int,
     val q1: String,
     val q2: String,
     val q3: String,

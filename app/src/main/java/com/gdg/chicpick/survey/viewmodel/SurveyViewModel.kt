@@ -1,9 +1,11 @@
 package com.gdg.chicpick.survey.viewmodel
 
 import android.app.Application
+import android.content.Intent
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.gdg.chicpick.R
 import com.gdg.chicpick.contant.BASE_URL
 import com.gdg.chicpick.login.LoginInstances
@@ -14,13 +16,18 @@ import com.gdg.chicpick.survey.model.SurveyItem
 import com.gdg.chicpick.survey.network.SurveyService
 import com.gdg.chicpick.survey.network.model.RequestSubmitSurvey
 import com.gdg.chicpick.survey.setValueAfter
+import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.Exception
 
 class SurveyViewModel(application: Application) : AndroidViewModel(application) {
     private val okHttpClient = OkHttpClient.Builder()
-        .build()
+        .addInterceptor(HttpLoggingInterceptor().apply {
+            setLevel(HttpLoggingInterceptor.Level.BODY)
+        }).build()
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
@@ -30,7 +37,7 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
 
     private val surveyApi = retrofit.create(SurveyService::class.java)
 
-    fun submitSurvey() {
+    fun submitSurvey(userId: Int) {
         val codes = mutableListOf<String>()
 
         surveyItems.value?.let { list ->
@@ -42,6 +49,7 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
         }
 
         val request = RequestSubmitSurvey(
+            memberId = userId,
             q1 = codes[0],
             q2 = codes[1],
             q3 = codes[2],
@@ -56,7 +64,17 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
             q12 = codes[11],
         )
 
-        println("zzzzzzzz:$request")
+        println("zzzzzzzzzzzz" + request)
+        viewModelScope.launch {
+            try {
+                val resp = surveyApi.submitSurvey(request)
+                println("dddddddddddd" + resp)
+            } catch (e: Exception) {
+                println("zzzzzz:$e")
+            }
+
+
+        }
     }
 
     private val _surveyItems = MutableLiveData(

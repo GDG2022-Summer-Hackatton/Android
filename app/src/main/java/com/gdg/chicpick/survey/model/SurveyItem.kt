@@ -177,7 +177,7 @@ sealed class SurveyItem {
                     SelectedButtonType.First in selectedButtonTypes -> "A1"
                     SelectedButtonType.Second in selectedButtonTypes -> "A2"
                     SelectedButtonType.Third in selectedButtonTypes -> "A3"
-                    else -> "A9"
+                    else -> "A4"
                 }
             }
         }
